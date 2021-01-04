@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    let verses = ReferenceFactory.makeReferences()
+    
+    @State var verseIndex = 0
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text(verses[verseIndex].text)
+                .padding()
+            Button("Next verse", action: {
+                verseIndex = Int.random(in: 0..<verses.count)
+            })
+        }
     }
 }
 

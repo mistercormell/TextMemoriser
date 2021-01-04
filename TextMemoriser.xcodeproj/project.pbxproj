@@ -13,6 +13,9 @@
 		B4E6645F25A20D080087AC26 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E6645E25A20D080087AC26 /* Preview Assets.xcassets */; };
 		B4E6646A25A20D080087AC26 /* TextMemoriserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6646925A20D080087AC26 /* TextMemoriserTests.swift */; };
 		B4E6647525A20D080087AC26 /* TextMemoriserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6647425A20D080087AC26 /* TextMemoriserUITests.swift */; };
+		B4E6648E25A20EB90087AC26 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6648D25A20EB90087AC26 /* Reference.swift */; };
+		B4E6649325A20FB20087AC26 /* GuessLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6649225A20FB10087AC26 /* GuessLocationView.swift */; };
+		B4E6649825A3372F0087AC26 /* VerseArrangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6649725A3372F0087AC26 /* VerseArrangeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		B4E6647025A20D080087AC26 /* TextMemoriserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextMemoriserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E6647425A20D080087AC26 /* TextMemoriserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMemoriserUITests.swift; sourceTree = "<group>"; };
 		B4E6647625A20D080087AC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4E6648D25A20EB90087AC26 /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
+		B4E6649225A20FB10087AC26 /* GuessLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessLocationView.swift; sourceTree = "<group>"; };
+		B4E6649725A3372F0087AC26 /* VerseArrangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseArrangeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,9 @@
 				B4E6645B25A20D080087AC26 /* Assets.xcassets */,
 				B4E6646025A20D080087AC26 /* Info.plist */,
 				B4E6645D25A20D080087AC26 /* Preview Content */,
+				B4E6648D25A20EB90087AC26 /* Reference.swift */,
+				B4E6649225A20FB10087AC26 /* GuessLocationView.swift */,
+				B4E6649725A3372F0087AC26 /* VerseArrangeView.swift */,
 			);
 			path = TextMemoriser;
 			sourceTree = "<group>";
@@ -259,6 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E6648E25A20EB90087AC26 /* Reference.swift in Sources */,
+				B4E6649325A20FB20087AC26 /* GuessLocationView.swift in Sources */,
+				B4E6649825A3372F0087AC26 /* VerseArrangeView.swift in Sources */,
 				B4E6645A25A20D070087AC26 /* ContentView.swift in Sources */,
 				B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */,
 			);
