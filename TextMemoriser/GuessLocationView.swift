@@ -58,7 +58,10 @@ struct GuessLocationView: View {
             .alert(isPresented: $showingScore, content: {
                 Alert(title: Text("\(alertTitle)"), message: Text("Your score is: \(score)"), dismissButton: .default(Text("OK")))
             })
-        }
+        }.onAppear(perform: {
+            let adaptor = EsvBibleAdaptor()
+            adaptor.fetchVerseWithReference(book: "2Timothy", chapter: 1, verse: 7)
+        })
             
 
     }
