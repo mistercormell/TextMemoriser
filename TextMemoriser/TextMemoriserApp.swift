@@ -11,7 +11,7 @@ import SwiftUI
 struct TextMemoriserApp: App {
     var body: some Scene {
         WindowGroup {
-            VerseArrangeView()
+            GuessLocationView()
         }
     }
 }

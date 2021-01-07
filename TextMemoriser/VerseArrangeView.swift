@@ -14,30 +14,40 @@ struct VerseArrangeView: View {
     ]
     
     let columns2 = [
-        GridItem(.adaptive(minimum: 70))
+        GridItem(.adaptive(minimum: 80))
     ]
     
     @State private var currentReferenceIndex = 0
     @State var wordsToPick = [WordInVerse]()
     @State var wordsInVerse = [WordInVerse]()
+    @State var verseBeingBuilt = ""
     
     var body: some View {
         VStack {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(wordsInVerse, id: \.id) { word in
-                    Button(word.word) {
-                        wordsToPick.append(word)
-                        wordsInVerse.removeAll {
-                            $0.id == word.id
-                        }
-                    }
+            Text("\(references[currentReferenceIndex].display())")
+                .font(.largeTitle)
+            Divider()
+            Text(verseBeingBuilt)
+            Spacer()
+            Divider()
+            HStack {
+                Button("Skip") {
+                    loadVerse()
+                }
+                Button("Reset") {
+                    wordsToPick = wordsInVerses(verse: references[currentReferenceIndex].text)
+                    wordsInVerse = []
+                    verseBeingBuilt = ""
                 }
             }
-            Spacer()
+            Divider()
             LazyVGrid(columns: columns2, spacing: 20) {
                 ForEach(wordsToPick, id: \.id) { word in
                     Button(action: {
                             wordsInVerse.append(word)
+                        verseBeingBuilt = wordsInVerse.map { word in
+                            word.word
+                        }.joined(separator: " ")
                         wordsToPick.removeAll {
                             $0.id == word.id
                         }

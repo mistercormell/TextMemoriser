@@ -12,6 +12,10 @@ struct Reference {
     let chapter: Int
     let verse: Int
     let text: String
+    
+    func display() -> String {
+        return "\(book) \(chapter):\(verse)"
+    }
 }
 
 class ReferenceFactory {
