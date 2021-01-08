@@ -43,7 +43,7 @@ struct GuessLocationView: View {
                             vm.alertTitle = "Wrong!"
                         }
                         vm.showingScore = true
-                        vm.currentReference = vm.references.randomElement()
+                        vm.loadReference()
                     }
 
                 })
@@ -53,7 +53,7 @@ struct GuessLocationView: View {
                 Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")))
             })
         }.onAppear(perform: {
-            vm.fetchReferences()
+            vm.loadReference()
         })
             
 

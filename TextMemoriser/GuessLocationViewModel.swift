@@ -8,7 +8,7 @@
 import Foundation
 
 class GuessLocationViewModel: ObservableObject {
-    @Published var references: [Reference] = []
+    var references: [Reference] = []
     let books = ["Genesis", "Exodus", "Leviticus", "John", "Colossians", "1 Timothy", "2 Timothy"]
     let sampleVerses = [(book: "John", chapter: 3, verse: 16),
                         (book: "Colossians", chapter: 3, verse: 16),
@@ -29,16 +29,24 @@ class GuessLocationViewModel: ObservableObject {
     @Published var score = 0
     
     func fetchReferences() {
-        for verse in sampleVerses {
+        for (index, verse) in sampleVerses.enumerated() {
             adaptor.fetchVerseWithReference(book: verse.book, chapter: verse.chapter, verse: verse.verse, completion: { reference in
                 DispatchQueue.main.async {
                     self.references.append(reference)
-                    self.currentReference = self.references.randomElement()
+                    if index == 0 {
+                        self.currentReference = self.references.randomElement()
+                    }
                 }
             })
         }
-        
-
+    }
+    
+    func loadReference() {
+        if references.count == 0 {
+            fetchReferences()
+        } else {
+            currentReference = references.randomElement()
+        }
     }
     
 }
