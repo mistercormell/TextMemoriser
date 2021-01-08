@@ -9,7 +9,7 @@ import Foundation
 
 
 class EsvBibleAdaptor {
-    func fetchVerseWithReference(book: String, chapter: Int, verse: Int) {
+    func fetchVerseWithReference(book: String, chapter: Int, verse: Int, completion: @escaping (Reference) -> Void) {
         guard let url = URL(string: "https://api.esv.org/v3/passage/text/?q=\(book)+\(chapter):\(verse)&include-short-copyright=false&include-headings=false&include-verse-numbers=false&include-passage-references=false") else {
             print("Invalid URL")
             return
@@ -21,7 +21,11 @@ class EsvBibleAdaptor {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 if let decodedResponse = try? JSONDecoder().decode(EsvBibleResponse.self, from: data) {
-                    print(decodedResponse.passages)
+                    if let verseText = decodedResponse.passages.first {
+                        let reference = Reference(book: book, chapter: chapter, verse: verse, text: verseText)
+                        completion(reference)
+                    }
+
                 }
             }
 

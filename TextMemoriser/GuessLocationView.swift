@@ -8,59 +8,52 @@
 import SwiftUI
 
 struct GuessLocationView: View {
-    let references = ReferenceFactory.makeReferences()
-    
-    let books = ["Genesis", "Exodus", "Leviticus", "John", "Colossians", "1 Timothy", "2 Timothy"]
-
-    @State var chapter = 1
-    @State var verse = 1
-    @State var selectedBook = 0
-    @State var currentReferenceIndex = 0
-    @State var alertTitle = ""
-    @State var showingScore = false
-    @State var score = 0
+    @StateObject var vm = GuessLocationViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                Text(references[currentReferenceIndex].text)
-                    .padding()
+                if let reference = vm.currentReference {
+                    Text(reference.text)
+                            .padding()
+                }
                 Form {
-                    Picker(selection: $selectedBook, label: Text("Book"), content: {
-                        ForEach(0 ..< books.count) {
-                            Text(books[$0])
+                    Picker(selection: $vm.selectedBook, label: Text("Book"), content: {
+                        ForEach(0 ..< vm.books.count) {
+                            Text(vm.books[$0])
                         }
                     })
-                    Picker(selection: $chapter, label: Text("Chapter"), content: {
+                    Picker(selection: $vm.chapter, label: Text("Chapter"), content: {
                         ForEach(0 ... 150, id: \.self) {
                             Text("\($0)")
                         }
                     })
-                    Picker(selection: $verse, label: Text("Verse"), content: {
+                    Picker(selection: $vm.verse, label: Text("Verse"), content: {
                         ForEach(0 ... 60, id: \.self) {
                             Text("\($0)")
                         }
                     })
                 }
                 Button("Check Answer", action: {
-                    let correctReference = references[currentReferenceIndex]
-                    if books[selectedBook] == correctReference.book && chapter == correctReference.chapter && verse == correctReference.verse {
-                        alertTitle = "Correct"
-                        score += 1
-                    } else {
-                        alertTitle = "Wrong!"
+                    if let correctReference = vm.currentReference {
+                        if vm.books[vm.selectedBook] == correctReference.book && vm.chapter == correctReference.chapter && vm.verse == correctReference.verse {
+                            vm.alertTitle = "Correct"
+                            vm.score += 1
+                        } else {
+                            vm.alertTitle = "Wrong!"
+                        }
+                        vm.showingScore = true
+                        vm.currentReference = vm.references.randomElement()
                     }
-                    showingScore = true
-                    currentReferenceIndex = Int.random(in: 0..<references.count)
+
                 })
             }
             .navigationBarTitle("Guess the Location")
-            .alert(isPresented: $showingScore, content: {
-                Alert(title: Text("\(alertTitle)"), message: Text("Your score is: \(score)"), dismissButton: .default(Text("OK")))
+            .alert(isPresented: $vm.showingScore, content: {
+                Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")))
             })
         }.onAppear(perform: {
-            let adaptor = EsvBibleAdaptor()
-            adaptor.fetchVerseWithReference(book: "2Timothy", chapter: 1, verse: 7)
+            vm.fetchReferences()
         })
             
 
