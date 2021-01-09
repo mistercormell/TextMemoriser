@@ -19,7 +19,7 @@
 		B4E664A125A379530087AC26 /* WordInVerse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664A025A379530087AC26 /* WordInVerse.swift */; };
 		B4E664A925A71C600087AC26 /* EsvBibleAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664A825A71C600087AC26 /* EsvBibleAdaptor.swift */; };
 		B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664AD25A71F8D0087AC26 /* EsvBibleResponse.swift */; };
-		B4E664B325A723A10087AC26 /* GuessLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664B225A723A10087AC26 /* GuessLocationViewModel.swift */; };
+		B4E664B325A723A10087AC26 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664B225A723A10087AC26 /* StateController.swift */; };
 		B4E664C325AA05520087AC26 /* VerseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664C225AA05520087AC26 /* VerseLocation.swift */; };
 		B4E664C825AA05910087AC26 /* Passage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664C725AA05910087AC26 /* Passage.swift */; };
 		B4E664D625AA08BB0087AC26 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E664D525AA08BB0087AC26 /* PracticeView.swift */; };
@@ -62,7 +62,7 @@
 		B4E664A025A379530087AC26 /* WordInVerse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordInVerse.swift; sourceTree = "<group>"; };
 		B4E664A825A71C600087AC26 /* EsvBibleAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsvBibleAdaptor.swift; sourceTree = "<group>"; };
 		B4E664AD25A71F8D0087AC26 /* EsvBibleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsvBibleResponse.swift; sourceTree = "<group>"; };
-		B4E664B225A723A10087AC26 /* GuessLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessLocationViewModel.swift; sourceTree = "<group>"; };
+		B4E664B225A723A10087AC26 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		B4E664C225AA05520087AC26 /* VerseLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseLocation.swift; sourceTree = "<group>"; };
 		B4E664C725AA05910087AC26 /* Passage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passage.swift; sourceTree = "<group>"; };
 		B4E664D525AA08BB0087AC26 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 				B4E664A025A379530087AC26 /* WordInVerse.swift */,
 				B4E664A825A71C600087AC26 /* EsvBibleAdaptor.swift */,
 				B4E664AD25A71F8D0087AC26 /* EsvBibleResponse.swift */,
-				B4E664B225A723A10087AC26 /* GuessLocationViewModel.swift */,
+				B4E664B225A723A10087AC26 /* StateController.swift */,
 				B4E664C225AA05520087AC26 /* VerseLocation.swift */,
 				B4E664C725AA05910087AC26 /* Passage.swift */,
 				B4E664D525AA08BB0087AC26 /* PracticeView.swift */,
@@ -292,7 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4E664B325A723A10087AC26 /* GuessLocationViewModel.swift in Sources */,
+				B4E664B325A723A10087AC26 /* StateController.swift in Sources */,
 				B4E6648E25A20EB90087AC26 /* Reference.swift in Sources */,
 				B4E664C325AA05520087AC26 /* VerseLocation.swift in Sources */,
 				B4E664A925A71C600087AC26 /* EsvBibleAdaptor.swift in Sources */,
