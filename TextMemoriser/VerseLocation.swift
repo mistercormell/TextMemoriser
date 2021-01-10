@@ -11,6 +11,10 @@ struct VerseLocation {
     let book: String
     let chapter: Int
     let verse: Int
+    
+    var display: String {
+        "\(book) \(chapter):\(verse)"
+    }
 }
 
 enum Book: String, CaseIterable {

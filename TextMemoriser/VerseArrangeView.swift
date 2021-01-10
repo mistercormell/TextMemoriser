@@ -8,47 +8,41 @@
 import SwiftUI
 
 struct VerseArrangeView: View {
-    let references = ReferenceFactory.makeReferences()
     let columns = [
-        GridItem(.adaptive(minimum: 70))
-    ]
-    
-    let columns2 = [
         GridItem(.adaptive(minimum: 80))
     ]
     
-    @State private var currentReferenceIndex = 0
-    @State var wordsToPick = [WordInVerse]()
     @State var wordsInVerse = [WordInVerse]()
     @State var verseBeingBuilt = ""
+    @EnvironmentObject var vm: StateController
     
     var body: some View {
         VStack {
-            Text("\(references[currentReferenceIndex].display())")
+            Text("\(vm.currentReference?.location.display ?? "")")
                 .font(.largeTitle)
             Divider()
             Text(verseBeingBuilt)
             Spacer()
             Divider()
             HStack {
-                Button("Skip") {
-                    loadVerse()
+                Button("Check") {
+                    checkAnswer()
                 }
                 Button("Reset") {
-                    wordsToPick = wordsInVerses(verse: references[currentReferenceIndex].text)
+                    vm.wordsToPick = vm.currentReference?.wordsInVerse ?? []
                     wordsInVerse = []
                     verseBeingBuilt = ""
                 }
             }
             Divider()
-            LazyVGrid(columns: columns2, spacing: 20) {
-                ForEach(wordsToPick, id: \.id) { word in
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(vm.wordsToPick, id: \.id) { word in
                     Button(action: {
                             wordsInVerse.append(word)
                         verseBeingBuilt = wordsInVerse.map { word in
                             word.word
                         }.joined(separator: " ")
-                        wordsToPick.removeAll {
+                        vm.wordsToPick.removeAll {
                             $0.id == word.id
                         }
                     }) {
@@ -61,27 +55,19 @@ struct VerseArrangeView: View {
                 }
             }
         }
-        .onAppear(perform: loadVerse)
+        .onAppear(perform: loadReference)
         
     }
     
-    func loadVerse() {
-        currentReferenceIndex = Int.random(in: 0..<references.count)
-        let reference = references[currentReferenceIndex]
-        
-        wordsToPick = wordsInVerses(verse: reference.text)
+    func loadReference() {
+        vm.loadReference()
     }
     
-    func wordsInVerses(verse: String) -> [WordInVerse] {
-        let words = verse.components(separatedBy: " ").shuffled()
-        var wordsInVerses = [WordInVerse]()
-        
-        for (index, word) in words.enumerated() {
-            wordsInVerses.append(WordInVerse(id: index, word: word))
-        }
-        
-        return wordsInVerses
+    func checkAnswer() {
+        vm.nextQuestion()
     }
+    
+
     
     
 }

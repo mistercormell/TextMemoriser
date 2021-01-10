@@ -8,9 +8,8 @@
 import Foundation
 
 class StateController: ObservableObject {
-    var references: [Passage] = []
-    let books = ["Genesis", "Exodus", "Leviticus", "John", "Colossians", "1 Timothy", "2 Timothy"]
-    let sampleVerses = [VerseLocation(book: "John", chapter: 3, verse: 16),
+    //all possible views
+    let learningSet = [VerseLocation(book: "John", chapter: 3, verse: 16),
                         VerseLocation(book: "Colossians", chapter: 3, verse: 16),
                         VerseLocation(book: "2Timothy", chapter: 1, verse: 7),
                         VerseLocation(book: "Genesis", chapter: 1, verse: 1),
@@ -19,23 +18,31 @@ class StateController: ObservableObject {
                         ]
     
     let adaptor = EsvBibleAdaptor()
+    @Published var passages: [Passage] = []
 
+    //guessLocationView
     @Published var chapter = 1
     @Published var verse = 1
     @Published var selectedBook = Book.Genesis
-    @Published var currentReference: Passage?
     @Published var alertTitle = ""
     @Published var showingScore = false
     @Published var score = 0
-    @Published var questionType: Question = .guessLocation
+    
+    //arrangeVerseView
+    @Published var wordsToPick = [WordInVerse]()
+    
+    //practiceView
+    @Published var currentReference: Passage?
+    @Published var questionType: Question = .arrangeVerse
     
     func fetchReferences() {
-        for (index, verse) in sampleVerses.enumerated() {
+        for (index, verse) in learningSet.enumerated() {
             adaptor.fetchVerseWithReference(location: verse, completion: { reference in
                 DispatchQueue.main.async {
-                    self.references.append(reference)
+                    self.passages.append(reference)
                     if index == 0 {
-                        self.currentReference = self.references.randomElement()
+                        self.currentReference = self.passages.randomElement()
+                        self.wordsToPick = self.currentReference?.wordsInVerse ?? []
                     }
                 }
             })
@@ -43,15 +50,23 @@ class StateController: ObservableObject {
     }
     
     func loadReference() {
-        if references.count == 0 {
+        if passages.count == 0 {
             fetchReferences()
         } else {
-            currentReference = references.randomElement()
+            currentReference = passages.randomElement()
+            wordsToPick = currentReference?.wordsInVerse ?? []
         }
     }
     
     func nextQuestion() {
-        questionType = Question.allCases.randomElement()!
+        if questionType == .guessLocation {
+            questionType = .arrangeVerse
+        } else {
+            questionType = .guessLocation
+        }
+        loadReference()
     }
+    
+
     
 }
