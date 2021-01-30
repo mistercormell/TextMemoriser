@@ -9,12 +9,18 @@ import Foundation
 
 class StateController: ObservableObject {
     //all possible views
-    let learningSet = [VerseLocation(book: "John", chapter: 3, verse: 16),
-                        VerseLocation(book: "Colossians", chapter: 3, verse: 16),
+    let learningSet = [VerseLocation(book: "Colossians", chapter: 3, verse: 16),
                         VerseLocation(book: "2Timothy", chapter: 1, verse: 7),
                         VerseLocation(book: "Genesis", chapter: 1, verse: 1),
-                        VerseLocation(book: "Romans", chapter: 8, verse: 20),
-                        VerseLocation(book: "Revelation", chapter: 3, verse: 20)
+                        VerseLocation(book: "John", chapter: 11, verse: 35),
+                        VerseLocation(book: "Acts", chapter: 1, verse: 8),
+                        VerseLocation(book: "Revelation", chapter: 3, verse: 20),
+                        VerseLocation(book: "Philippians", chapter: 2, verse: 5),
+                        VerseLocation(book: "Romans", chapter: 3, verse: 23),
+                        VerseLocation(book: "Matthew", chapter: 28, verse: 20),
+                        VerseLocation(book: "Psalm", chapter: 23, verse: 1),
+                        VerseLocation(book: "Psalm", chapter: 34, verse: 5),
+                        VerseLocation(book: "Haggai", chapter: 1, verse: 6)
                         ]
     
     let adaptor = EsvBibleAdaptor()
