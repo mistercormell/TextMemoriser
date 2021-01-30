@@ -15,6 +15,8 @@ struct VerseArrangeView: View {
     var body: some View {
         Content(passage: vm.currentReference, check: checkAnswer, reset: reset, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $vm.wordsToPick)
         .onAppear(perform: loadReference)
+        .alert(isPresented: $vm.showingScore, content: {
+                Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         
     }
     
@@ -24,11 +26,12 @@ struct VerseArrangeView: View {
     
     func checkAnswer() {
         if verseBeingBuilt == vm.currentReference?.text {
-            print("Correct")
+            vm.alertTitle = "Correct"
+            vm.score += 1
         } else {
-            print("Incorrect")
+            vm.alertTitle = "Wrong!"
         }
-        vm.nextQuestion()
+        vm.showingScore = true
     }
     
     func reset() {

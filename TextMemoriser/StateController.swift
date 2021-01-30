@@ -33,7 +33,7 @@ class StateController: ObservableObject {
     
     //practiceView
     @Published var currentReference: Passage?
-    @Published var questionType: Question = .arrangeVerse
+    @Published var questionType: Question = .guessLocation
     
     func fetchReferences() {
         for (index, verse) in learningSet.enumerated() {

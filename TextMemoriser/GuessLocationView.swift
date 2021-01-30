@@ -13,15 +13,12 @@ struct GuessLocationView: View {
     var body: some View {
         NavigationView {
             Content(passage: vm.currentReference, check: checkAnswer, bookChoice: $vm.selectedBook, chapterChoice: $vm.chapter, verseChoice: $vm.verse)
-                .onAppear(perform: vm.loadReference)
+                
                 .navigationBarTitle("Guess the Location")
                 .alert(isPresented: $vm.showingScore, content: {
-                        Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")) {nextQuestion()} )})
+                        Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         }
-    }
-    
-    func nextQuestion() {
-        vm.nextQuestion()
+        .onAppear(perform: vm.loadReference)
     }
     
     func checkAnswer() {
@@ -33,7 +30,6 @@ struct GuessLocationView: View {
                 vm.alertTitle = "Wrong!"
             }
             vm.showingScore = true
-            vm.loadReference()
         }
     }
     
