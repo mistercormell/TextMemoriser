@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */; };
-		B4E6645A25A20D070087AC26 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645925A20D070087AC26 /* ContentView.swift */; };
 		B4E6645C25A20D080087AC26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E6645B25A20D080087AC26 /* Assets.xcassets */; };
 		B4E6645F25A20D080087AC26 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E6645E25A20D080087AC26 /* Preview Assets.xcassets */; };
 		B4E6646A25A20D080087AC26 /* TextMemoriserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6646925A20D080087AC26 /* TextMemoriserTests.swift */; };
@@ -46,7 +45,6 @@
 /* Begin PBXFileReference section */
 		B4E6645425A20D070087AC26 /* TextMemoriser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMemoriser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMemoriserApp.swift; sourceTree = "<group>"; };
-		B4E6645925A20D070087AC26 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B4E6645B25A20D080087AC26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4E6645E25A20D080087AC26 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4E6646025A20D080087AC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */,
-				B4E6645925A20D070087AC26 /* ContentView.swift */,
 				B4E6645B25A20D080087AC26 /* Assets.xcassets */,
 				B4E6646025A20D080087AC26 /* Info.plist */,
 				B4E6645D25A20D080087AC26 /* Preview Content */,
@@ -303,7 +300,6 @@
 				B4E664A125A379530087AC26 /* WordInVerse.swift in Sources */,
 				B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */,
 				B4E6649825A3372F0087AC26 /* VerseArrangeView.swift in Sources */,
-				B4E6645A25A20D070087AC26 /* ContentView.swift in Sources */,
 				B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
