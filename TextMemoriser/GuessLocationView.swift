@@ -68,7 +68,8 @@ extension GuessLocationView {
                         }
                     })
                 }
-                Button("Check Answer", action: check)
+                Button("Check", action: check)
+                    .padding()
             }
         }
     }
@@ -76,6 +77,10 @@ extension GuessLocationView {
 
 struct GuessLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        GuessLocationView()
+        NavigationView {
+            GuessLocationView.Content(passage: Passage(location: VerseLocation(book: "Genesis", chapter: 1, verse: 1), text: "In the Beginning, God created the heavens and the earth"), check: {}, bookChoice: .constant(Book.Genesis), chapterChoice: .constant(1), verseChoice: .constant(5))
+                .navigationBarTitle("Guess the Location")
+        }
+
     }
 }
