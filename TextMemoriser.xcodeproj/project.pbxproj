@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D425D85EE00064A04D /* LearningSetView.swift */; };
+		B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D925D8674A0064A04D /* VersePickerView.swift */; };
+		B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478DE25D869610064A04D /* AddLearningGoalView.swift */; };
 		B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BB525C5E92F00A9D800 /* LearnView.swift */; };
 		B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */; };
 		B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */; };
@@ -47,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		B42478D425D85EE00064A04D /* LearningSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningSetView.swift; sourceTree = "<group>"; };
+		B42478D925D8674A0064A04D /* VersePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersePickerView.swift; sourceTree = "<group>"; };
+		B42478DE25D869610064A04D /* AddLearningGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLearningGoalView.swift; sourceTree = "<group>"; };
 		B4AA6BB525C5E92F00A9D800 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		B4E6645425A20D070087AC26 /* TextMemoriser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMemoriser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +132,8 @@
 				B4E6645D25A20D080087AC26 /* Preview Content */,
 				B4E6648D25A20EB90087AC26 /* Reference.swift */,
 				B4E6649225A20FB10087AC26 /* GuessLocationView.swift */,
+				B42478DE25D869610064A04D /* AddLearningGoalView.swift */,
+				B42478D925D8674A0064A04D /* VersePickerView.swift */,
 				B4E6649725A3372F0087AC26 /* VerseArrangeView.swift */,
 				B4E664A025A379530087AC26 /* WordInVerse.swift */,
 				B4E664A825A71C600087AC26 /* EsvBibleAdaptor.swift */,
@@ -303,6 +309,7 @@
 				B4E6648E25A20EB90087AC26 /* Reference.swift in Sources */,
 				B4E664C325AA05520087AC26 /* VerseLocation.swift in Sources */,
 				B4E664A925A71C600087AC26 /* EsvBibleAdaptor.swift in Sources */,
+				B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */,
 				B4E664D625AA08BB0087AC26 /* PracticeView.swift in Sources */,
 				B4E664DE25AA08EB0087AC26 /* Question.swift in Sources */,
 				B4E664C825AA05910087AC26 /* Passage.swift in Sources */,
@@ -312,6 +319,7 @@
 				B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */,
 				B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */,
 				B4E6649825A3372F0087AC26 /* VerseArrangeView.swift in Sources */,
+				B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */,
 				B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

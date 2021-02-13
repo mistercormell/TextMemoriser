@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LearningSetView: View {
     @EnvironmentObject var stateController: StateController
+    @State var showingAdd: Bool = false
+    
     var body: some View {
         NavigationView {
             List {
@@ -19,12 +21,19 @@ struct LearningSetView: View {
                     stateController.learningSet.remove(atOffsets: indexSet)
                 })
             }
-            .toolbar {
-                EditButton()
-            }
+            .navigationBarItems(leading: Button(action: {
+                self.showingAdd = true
+            }) {
+                Text("Add")
+            }, trailing: EditButton())
             .navigationTitle("Learning Set")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .sheet(isPresented: $showingAdd, content: {
+            NavigationView {
+                AddLearningGoalView()
+            }
+        })
     }
 }
 
