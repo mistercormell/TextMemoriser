@@ -24,6 +24,12 @@ struct RootTabView: View {
                     Text("Practice")
                 }
                 .tag(1)
+            LearningSetView()
+                .tabItem {
+                    Image(systemName: "star")
+                    Text("Goals")
+                }
+                .tag(2)
         }
     }
 }

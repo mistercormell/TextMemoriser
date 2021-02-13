@@ -7,13 +7,17 @@
 
 import Foundation
 
-struct VerseLocation {
+struct VerseLocation: Identifiable {
     let book: String
     let chapter: Int
     let verse: Int
     
     var display: String {
         "\(book) \(chapter):\(verse)"
+    }
+    
+    var id: String {
+        display
     }
 }
 

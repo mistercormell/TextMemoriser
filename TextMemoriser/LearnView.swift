@@ -27,7 +27,7 @@ extension LearnView {
         let next: () -> Void
         
         var body: some View {
-            VStack(alignment: .leading) {
+            VStack {
                 Text(passageText)
                     .padding()
                 Text(passageLocation)
@@ -35,9 +35,7 @@ extension LearnView {
                 
                 Spacer()
                 Button("Next", action: next)
-                    .padding()
-                    .alignmentGuide(.trailing) { d in d[.trailing]}
-                
+                        .padding()
             }
         }
     }
