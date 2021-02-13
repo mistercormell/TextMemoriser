@@ -34,7 +34,7 @@ struct AddLearningGoalView: View {
             })
             Button(action: {
                 let verseToLearn = VerseLocation(book: bookChoice.displayName, chapter: chapterChoice, verse: verseChoice)
-                vm.learningSet.append(verseToLearn)
+                vm.addVerseToLearningSet(verseToLearn)
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Add Verse to Learning Set")

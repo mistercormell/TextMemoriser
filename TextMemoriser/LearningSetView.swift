@@ -18,7 +18,7 @@ struct LearningSetView: View {
                     Text(location.display)
                 }
                 .onDelete(perform: { indexSet in
-                    stateController.learningSet.remove(atOffsets: indexSet)
+                    stateController.removeVerseFromLearningSet(atOffset: indexSet)
                 })
             }
             .navigationBarItems(leading: Button(action: {

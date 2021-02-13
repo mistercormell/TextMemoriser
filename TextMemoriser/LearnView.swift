@@ -8,15 +8,21 @@
 import SwiftUI
 
 struct LearnView: View {
+    @EnvironmentObject var vm: StateController
+    
     var body: some View {
         NavigationView {
-            Content(passageText: "placeholder verse text, blah, blah blah, blah, blah, need to get some more items.", passageLocation: "Genesis 3:16", next: nextPassage)
-                .navigationBarTitle("Learn the Verse")
+            if let currentReference = vm.currentReference {
+                Content(passageText: currentReference.text, passageLocation: currentReference.location.display, next: nextPassage)
+                    .navigationBarTitle("Learn the Verse")
+            } else {
+                Text("No references in learning set")
+            }
         }
     }
     
     func nextPassage() {
-        print("next passage")
+        vm.currentReference = vm.passages.randomElement()
     }
 }
 

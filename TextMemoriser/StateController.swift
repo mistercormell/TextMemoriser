@@ -9,19 +9,7 @@ import Foundation
 
 class StateController: ObservableObject {
     //all possible views
-    @Published var learningSet = [VerseLocation(book: "Colossians", chapter: 3, verse: 16),
-                        VerseLocation(book: "2Timothy", chapter: 1, verse: 7),
-                        VerseLocation(book: "Genesis", chapter: 1, verse: 1),
-                        VerseLocation(book: "John", chapter: 11, verse: 35),
-                        VerseLocation(book: "Acts", chapter: 1, verse: 8),
-                        VerseLocation(book: "Revelation", chapter: 3, verse: 20),
-                        VerseLocation(book: "Philippians", chapter: 2, verse: 5),
-                        VerseLocation(book: "Romans", chapter: 3, verse: 23),
-                        VerseLocation(book: "Matthew", chapter: 28, verse: 20),
-                        VerseLocation(book: "Psalm", chapter: 23, verse: 1),
-                        VerseLocation(book: "Psalm", chapter: 34, verse: 5),
-                        VerseLocation(book: "Haggai", chapter: 1, verse: 6)
-                        ]
+    @Published var learningSet: [VerseLocation] = []//[VerseLocation(book: "Colossians", chapter: 3, verse: 16)]
     
     let adaptor = EsvBibleAdaptor()
     @Published var passages: [Passage] = []
@@ -40,6 +28,14 @@ class StateController: ObservableObject {
     //practiceView
     @Published var currentReference: Passage?
     @Published var questionType: Question = .guessLocation
+    
+    func fetchReference(location: VerseLocation) {
+        adaptor.fetchVerseWithReference(location: location, completion: { reference in
+            DispatchQueue.main.async {
+                self.passages.append(reference)
+            }
+        })
+    }
     
     func fetchReferences() {
         for (index, verse) in learningSet.enumerated() {
@@ -73,6 +69,20 @@ class StateController: ObservableObject {
         loadReference()
     }
     
+    func addVerseToLearningSet(_ verseToAdd: VerseLocation) {
+        fetchReference(location: verseToAdd)
+        learningSet.append(verseToAdd)
+        currentReference = passages.randomElement()
+    }
+    
+    func removeVerseFromLearningSet(atOffset indexSet: IndexSet) {
+        let idsToDelete = indexSet.map { self.learningSet[$0].id }
+        for id in idsToDelete {
+            passages.removeAll(where: {$0.location.id == id })
+        }
+        
+        learningSet.remove(atOffsets: indexSet)
+    }
 
     
 }
