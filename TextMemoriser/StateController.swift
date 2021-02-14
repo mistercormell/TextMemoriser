@@ -9,7 +9,7 @@ import Foundation
 
 class StateController: ObservableObject {
     //all possible views
-    @Published var learningSet: [VerseLocation] = []//[VerseLocation(book: "Colossians", chapter: 3, verse: 16)]
+    @Published var learningSet: [VerseLocation] = [VerseLocation(book: "Colossians", chapter: 3, verse: 16)]
     
     let adaptor = EsvBibleAdaptor()
     @Published var passages: [Passage] = []
