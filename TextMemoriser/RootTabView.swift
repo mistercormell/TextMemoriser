@@ -12,24 +12,25 @@ struct RootTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            LearnView()
-                .tabItem {
-                    Image(systemName: "books.vertical")
-                    Text("Learn")
-                }
-                .tag(0)
-            PracticeView()
-                .tabItem {
-                    Image(systemName: "graduationcap")
-                    Text("Practice")
-                }
-                .tag(1)
             LearningSetView()
                 .tabItem {
                     Image(systemName: "star")
                     Text("Goals")
                 }
+                .tag(0)
+            LearnView()
+                .tabItem {
+                    Image(systemName: "books.vertical")
+                    Text("Learn")
+                }
+                .tag(1)
+            PracticeView()
+                .tabItem {
+                    Image(systemName: "graduationcap")
+                    Text("Practice")
+                }
                 .tag(2)
+
         }
     }
 }
