@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VerseLocation: Identifiable {
+struct VerseLocation: Codable, Identifiable {
     let book: String
     let chapter: Int
     let verse: Int

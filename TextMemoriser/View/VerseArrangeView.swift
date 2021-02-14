@@ -91,7 +91,7 @@ extension VerseArrangeView {
                             .padding()
                     }
                 }
-                .navigationBarTitle("\(passage?.location.display ?? "")")
+                .navigationBarTitle("\(passage?.displayLocationWithCopyright ?? "")")
             }
         }
         
@@ -101,6 +101,6 @@ extension VerseArrangeView {
 
 struct VerseArrangeView_Previews: PreviewProvider {
     static var previews: some View {
-        VerseArrangeView.Content(passage: Passage(location: VerseLocation(book: "Genesis", chapter: 1, verse: 1), text: "In the Beginning, God created the heavens and the earth"), check: {}, reset: {}, pickWord: {_ in }, verseBeingBuilt: .constant("In the Beginning,"), wordsToPick: .constant([WordInVerse(id: 1, word: "God"),WordInVerse(id: 2, word: "the"),WordInVerse(id: 3, word: "earth"),WordInVerse(id: 4, word: "created"),WordInVerse(id: 5, word: "heavens"), WordInVerse(id: 6, word: "and"),WordInVerse(id: 7, word: "the")]))
+        VerseArrangeView.Content(passage: Passage.example, check: {}, reset: {}, pickWord: {_ in }, verseBeingBuilt: .constant("In the Beginning,"), wordsToPick: .constant([WordInVerse(id: 1, word: "God"),WordInVerse(id: 2, word: "the"),WordInVerse(id: 3, word: "earth"),WordInVerse(id: 4, word: "created"),WordInVerse(id: 5, word: "heavens"), WordInVerse(id: 6, word: "and"),WordInVerse(id: 7, word: "the")]))
     }
 }

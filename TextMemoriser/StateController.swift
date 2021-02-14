@@ -9,7 +9,11 @@ import Foundation
 
 class StateController: ObservableObject {
     //all possible views
-    @Published var learningSet: [VerseLocation] = [VerseLocation(book: "Colossians", chapter: 3, verse: 16)]
+    @Published var learningSet: [VerseLocation] = [] {
+        didSet {
+            self.saveUserSettings()
+        }
+    }
     
     let adaptor = EsvBibleAdaptor()
     @Published var passages: [Passage] = []
@@ -83,6 +87,39 @@ class StateController: ObservableObject {
         
         learningSet.remove(atOffsets: indexSet)
     }
-
     
+    func getDocumentsDirectory() -> URL {
+        // find all possible documents directories for this user
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+        // just send back the first one, which ought to be the only one
+        return paths[0]
+    }
+    
+    func saveUserSettings() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(learningSet) {
+            if let json = String(data: encoded, encoding: .utf8) {
+                //do file handling to save this json
+                let url = self.getDocumentsDirectory().appendingPathComponent("settings.json")
+                do {
+                    try json.write(to: url, atomically: true, encoding: .utf8)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+        
+    func restoreUserSettings() {
+        let url = self.getDocumentsDirectory().appendingPathComponent("settings.json")
+        if let data = try? Data(contentsOf: url) {
+            let decoder = JSONDecoder()
+            guard let loaded = try? decoder.decode([VerseLocation].self, from: data) else {
+                fatalError("Failed to decode \(url) from documents.")
+            }
+            
+            learningSet = loaded
+        }
+    }
 }

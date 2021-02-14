@@ -50,6 +50,8 @@ extension GuessLocationView {
                 if let passage = passage {
                     Text(passage.text)
                         .padding()
+                } else {
+                    ProgressView("Loading verse...")
                 }
                 Form {
                     Picker(selection: $bookChoice, label: Text("Book"), content: {
@@ -78,7 +80,7 @@ extension GuessLocationView {
 struct GuessLocationView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            GuessLocationView.Content(passage: Passage(location: VerseLocation(book: "Genesis", chapter: 1, verse: 1), text: "In the Beginning, God created the heavens and the earth"), check: {}, bookChoice: .constant(Book.Genesis), chapterChoice: .constant(1), verseChoice: .constant(5))
+            GuessLocationView.Content(passage: Passage.example, check: {}, bookChoice: .constant(Book.Genesis), chapterChoice: .constant(1), verseChoice: .constant(5))
                 .navigationBarTitle("Guess the Location")
         }
 

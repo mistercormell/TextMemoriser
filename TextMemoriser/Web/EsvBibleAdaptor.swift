@@ -22,7 +22,7 @@ class EsvBibleAdaptor {
             if let data = data {
                 if let decodedResponse = try? JSONDecoder().decode(EsvBibleResponse.self, from: data) {
                     if let verseText = decodedResponse.passages.first {
-                        let passage = Passage(location: location, text: verseText.trimmingCharacters(in: .whitespacesAndNewlines))
+                        let passage = Passage(location: location, text: verseText.trimmingCharacters(in: .whitespacesAndNewlines), copyright: "ESV")
                         completion(passage)
                     }
 

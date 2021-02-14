@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RootTabView: View {
     @State private var selectedTab = 0
+    @EnvironmentObject var vm: StateController
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -32,6 +33,7 @@ struct RootTabView: View {
                 .tag(2)
 
         }
+        .onAppear(perform: vm.restoreUserSettings)
     }
 }
 

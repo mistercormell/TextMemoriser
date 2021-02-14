@@ -13,16 +13,17 @@ struct LearnView: View {
     var body: some View {
         NavigationView {
             if let currentReference = vm.currentReference {
-                Content(passageText: currentReference.text, passageLocation: currentReference.location.display, next: nextPassage)
+                Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, next: nextPassage)
                     .navigationBarTitle("Learn the Verse")
             } else {
-                Text("No references in learning set")
+                ProgressView("Loading verses...")
             }
         }
+        .onAppear(perform: nextPassage)
     }
     
     func nextPassage() {
-        vm.currentReference = vm.passages.randomElement()
+        vm.loadReference()
     }
 }
 
@@ -36,8 +37,11 @@ extension LearnView {
             VStack {
                 Text(passageText)
                     .padding()
-                Text(passageLocation)
-                    .padding()
+                HStack {
+                    Spacer()
+                    Text(passageLocation)
+                        .padding()
+                }
                 
                 Spacer()
                 Button("Next", action: next)
@@ -49,6 +53,9 @@ extension LearnView {
 
 struct LearnView_Previews: PreviewProvider {
     static var previews: some View {
-        LearnView()
+        NavigationView {
+            LearnView.Content(passageText: Passage.example.text, passageLocation: Passage.example.displayLocationWithCopyright, next: {})
+                .navigationTitle("Learn the Verse")
+        }
     }
 }
