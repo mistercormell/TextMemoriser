@@ -32,6 +32,8 @@ struct LearningSetView: View {
         .sheet(isPresented: $showingAdd, content: {
             NavigationView {
                 AddLearningGoalView()
+                    .navigationTitle("Add Verse")
+                    .navigationBarTitleDisplayMode(.inline)
             }
         })
     }

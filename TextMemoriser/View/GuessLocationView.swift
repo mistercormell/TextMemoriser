@@ -23,7 +23,7 @@ struct GuessLocationView: View {
     
     func checkAnswer() {
         if let correctReference = vm.currentReference {
-            if vm.selectedBook.rawValue == correctReference.location.book && vm.chapter == correctReference.location.chapter && vm.verse == correctReference.location.verse {
+            if vm.selectedBook == correctReference.location.book && vm.chapter == correctReference.location.chapter && vm.verse == correctReference.location.verse {
                 vm.alertTitle = "Correct"
                 vm.score += 1
             } else {
@@ -48,7 +48,7 @@ extension GuessLocationView {
         var body: some View {
             VStack {
                 if let passage = passage {
-                    Text(passage.text)
+                    Text("\(passage.text) (\(passage.copyright))")
                         .padding()
                 } else {
                     ProgressView("Loading verse...")

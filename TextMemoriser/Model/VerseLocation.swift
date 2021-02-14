@@ -8,12 +8,12 @@
 import Foundation
 
 struct VerseLocation: Codable, Identifiable {
-    let book: String
+    let book: Book
     let chapter: Int
     let verse: Int
     
     var display: String {
-        "\(book) \(chapter):\(verse)"
+        "\(book.displayName) \(chapter):\(verse)"
     }
     
     var id: String {
@@ -21,13 +21,13 @@ struct VerseLocation: Codable, Identifiable {
     }
 }
 
-enum Book: String, CaseIterable {
+enum Book: String, Codable, CaseIterable {
     case Genesis, Exodus, Leviticus, Numbers, Deutoronomy, Joshua, Judges, Ruth, Samuel1, Samuel2, Kings1, Kings2, Chornicles1, Chronicles2, Ezra, Nehemiah, Esther, Job, Psalms, Proverbs, Ecclesiastes, SongOfSolomon, Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel, Hosea, Joel, Amos, Obadadiah, Jonah, Micah, Nahum, Habakuk, Zephaniah, Haggai, Zechariah, Malachi, Matthew, Mark, Luke, John, Acts, Romans, Corinthians1, Corinthians2, Galatians, Ephesians, Philippians, Colossians, Thessalonians1, Thessalonians2, Timothy1, Timothy2, Titus, Philemon, Hebrews, James, Peter1, Peter2, John1, John2, John3, Jude, Revelation
     
     var displayName: String {
         switch self {
         case .Timothy2:
-            return "2Timothy"
+            return "2 Timothy"
         default:
             return self.rawValue
         }

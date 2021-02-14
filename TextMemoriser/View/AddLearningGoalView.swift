@@ -33,7 +33,7 @@ struct AddLearningGoalView: View {
                 }
             })
             Button(action: {
-                let verseToLearn = VerseLocation(book: bookChoice.displayName, chapter: chapterChoice, verse: verseChoice)
+                let verseToLearn = VerseLocation(book: bookChoice, chapter: chapterChoice, verse: verseChoice)
                 vm.addVerseToLearningSet(verseToLearn)
                 self.presentationMode.wrappedValue.dismiss()
             }) {

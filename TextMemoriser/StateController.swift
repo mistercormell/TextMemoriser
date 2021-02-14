@@ -115,11 +115,14 @@ class StateController: ObservableObject {
         let url = self.getDocumentsDirectory().appendingPathComponent("settings.json")
         if let data = try? Data(contentsOf: url) {
             let decoder = JSONDecoder()
-            guard let loaded = try? decoder.decode([VerseLocation].self, from: data) else {
-                fatalError("Failed to decode \(url) from documents.")
+            if let loaded = try? decoder.decode([VerseLocation].self, from: data) {
+                learningSet = loaded
+            } else {
+                print("Failed to decode")
+                //fatalError("Failed to decode \(url) from documents.")
             }
             
-            learningSet = loaded
+            
         }
     }
 }
