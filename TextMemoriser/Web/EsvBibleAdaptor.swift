@@ -10,8 +10,19 @@ import Foundation
 
 class EsvBibleAdaptor {
     func fetchVerseWithReference(location: VerseLocation, completion: @escaping (Passage) -> Void) {
-        guard let url = URL(string: "https://api.esv.org/v3/passage/text/?q=\(location.book)+\(location.chapter):\(location.verse)&include-short-copyright=false&include-headings=false&include-verse-numbers=false&include-passage-references=false&include-footnotes=false") else {
-            print("Invalid URL")
+        
+        var urlComponents = URLComponents(string: "https://api.esv.org/v3/passage/text/")
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "q", value: "\(location.book.displayName)+\(location.chapter):\(location.verse)"),
+            URLQueryItem(name: "include-short-copyright", value: "false"),
+            URLQueryItem(name: "include-headings", value: "false"),
+            URLQueryItem(name: "include-verse-numbers", value: "false"),
+            URLQueryItem(name: "include-passage-references", value: "false"),
+            URLQueryItem(name: "include-footnotes", value: "false")
+        ]
+        
+        guard let url = urlComponents?.url else {
+            print("Invalid url components url")
             return
         }
         
