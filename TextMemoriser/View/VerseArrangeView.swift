@@ -13,7 +13,7 @@ struct VerseArrangeView: View {
     @EnvironmentObject var vm: StateController
     
     var body: some View {
-        Content(passage: vm.currentReference, check: checkAnswer, reset: reset, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $vm.wordsToPick)
+        Content(passage: vm.currentReference, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $vm.wordsToPick)
         .onAppear(perform: loadReference)
         .alert(isPresented: $vm.showingScore, content: {
                 Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
@@ -36,8 +36,22 @@ struct VerseArrangeView: View {
     
     func reset() {
         verseBeingBuilt = ""
+        wordsInVerse = []
         vm.wordsToPick = vm.currentReference?.wordsInVerse ?? []
     }
+    
+    func undo() {
+        let wordToUndo = wordsInVerse.popLast()
+        
+        verseBeingBuilt = wordsInVerse.map { word in
+            word.word
+        }.joined(separator: " ")
+        
+        if let word = wordToUndo {
+            vm.wordsToPick.append(word)
+        }
+    }
+        
     
     func pickWord(word: WordInVerse) {
         wordsInVerse.append(word)
@@ -57,6 +71,7 @@ extension VerseArrangeView {
         let passage: Passage?
         let check: () -> Void
         let reset: () -> Void
+        let undo: () -> Void
         let pickWord: (WordInVerse) -> Void
         
         let columns = [
@@ -87,6 +102,8 @@ extension VerseArrangeView {
                     HStack {
                         Button("Check", action: check)
                             .padding()
+                        Button("Undo", action: undo)
+                            .padding()
                         Button("Reset", action: reset)
                             .padding()
                     }
@@ -101,6 +118,6 @@ extension VerseArrangeView {
 
 struct VerseArrangeView_Previews: PreviewProvider {
     static var previews: some View {
-        VerseArrangeView.Content(passage: Passage.example, check: {}, reset: {}, pickWord: {_ in }, verseBeingBuilt: .constant("In the Beginning,"), wordsToPick: .constant([WordInVerse(id: 1, word: "God"),WordInVerse(id: 2, word: "the"),WordInVerse(id: 3, word: "earth"),WordInVerse(id: 4, word: "created"),WordInVerse(id: 5, word: "heavens"), WordInVerse(id: 6, word: "and"),WordInVerse(id: 7, word: "the")]))
+        VerseArrangeView.Content(passage: Passage.example, check: {}, reset: {}, undo: {}, pickWord: {_ in }, verseBeingBuilt: .constant("In the Beginning,"), wordsToPick: .constant([WordInVerse(id: 1, word: "God"),WordInVerse(id: 2, word: "the"),WordInVerse(id: 3, word: "earth"),WordInVerse(id: 4, word: "created"),WordInVerse(id: 5, word: "heavens"), WordInVerse(id: 6, word: "and"),WordInVerse(id: 7, word: "the")]))
     }
 }
