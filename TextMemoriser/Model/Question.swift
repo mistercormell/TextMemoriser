@@ -8,5 +8,5 @@
 import Foundation
 
 enum Question: CaseIterable {
-    case guessLocation, arrangeVerse
+    case guessLocation, arrangeVerse, missingWord
 }

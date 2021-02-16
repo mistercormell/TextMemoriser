@@ -17,6 +17,7 @@ class StateController: ObservableObject {
     
     let adaptor = EsvBibleAdaptor()
     @Published var passages: [Passage] = []
+    @Published var currentReference: Passage?
 
     //guessLocationView
     @Published var chapter = 1
@@ -30,7 +31,6 @@ class StateController: ObservableObject {
     @Published var wordsToPick = [WordInVerse]()
     
     //practiceView
-    @Published var currentReference: Passage?
     @Published var questionType: Question = .guessLocation
     
     func fetchReference(location: VerseLocation) {
@@ -47,7 +47,7 @@ class StateController: ObservableObject {
                 DispatchQueue.main.async {
                     self.passages.append(reference)
                     if index == 0 {
-                        self.currentReference = self.passages.randomElement()
+                        self.selectReference()
                         self.wordsToPick = self.currentReference?.wordsInVerse ?? []
                     }
                 }
@@ -55,11 +55,23 @@ class StateController: ObservableObject {
         }
     }
     
+    func selectReference() {
+        var randomReference = self.passages.randomElement()
+        
+        if passages.count > 1 {
+            while randomReference == self.currentReference {
+                randomReference = self.passages.randomElement()
+            }
+        }
+        
+        self.currentReference = randomReference
+    }
+    
     func loadReference() {
         if passages.count == 0 {
             fetchReferences()
         } else {
-            currentReference = passages.randomElement()
+            selectReference()
             wordsToPick = currentReference?.wordsInVerse ?? []
         }
     }

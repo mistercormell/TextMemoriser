@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Passage {
+struct Passage: Equatable {
     let location: VerseLocation
     let text: String
     let copyright: String
@@ -27,7 +27,11 @@ struct Passage {
         return wordsInVerses
     }
     
-    #if DEBUG
+    static func == (lhs: Passage, rhs: Passage) -> Bool {
+        return lhs.text == rhs.text ? true : false
+    }
+    
+    //#if DEBUG
     static let example = Passage(location: VerseLocation(book: Book.Colossians, chapter: 3, verse: 16), text: "Let the word of Christ dwell in you richly, teaching and admonishing one another in all wisdom, singing psalms and hymns and spiritual songs, with thankfulness in your hearts to God.", copyright: "ESV")
-    #endif
+    //#endif
 }

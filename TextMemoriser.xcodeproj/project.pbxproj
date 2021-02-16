@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B413F3E625DC5016001D974C /* GuessMissingWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F3E525DC5016001D974C /* GuessMissingWordView.swift */; };
 		B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D425D85EE00064A04D /* LearningSetView.swift */; };
 		B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D925D8674A0064A04D /* VersePickerView.swift */; };
 		B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478DE25D869610064A04D /* AddLearningGoalView.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B413F3E525DC5016001D974C /* GuessMissingWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessMissingWordView.swift; sourceTree = "<group>"; };
 		B42478D425D85EE00064A04D /* LearningSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningSetView.swift; sourceTree = "<group>"; };
 		B42478D925D8674A0064A04D /* VersePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersePickerView.swift; sourceTree = "<group>"; };
 		B42478DE25D869610064A04D /* AddLearningGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLearningGoalView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				B4E664D525AA08BB0087AC26 /* PracticeView.swift */,
 				B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */,
 				B42478D425D85EE00064A04D /* LearningSetView.swift */,
+				B413F3E525DC5016001D974C /* GuessMissingWordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				B4E664DE25AA08EB0087AC26 /* Question.swift in Sources */,
 				B4E664C825AA05910087AC26 /* Passage.swift in Sources */,
 				B4E6649325A20FB20087AC26 /* GuessLocationView.swift in Sources */,
+				B413F3E625DC5016001D974C /* GuessMissingWordView.swift in Sources */,
 				B4E664A125A379530087AC26 /* WordInVerse.swift in Sources */,
 				B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */,
 				B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */,
