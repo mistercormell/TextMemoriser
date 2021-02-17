@@ -34,7 +34,7 @@ class StateController: ObservableObject {
     @Published var textWithMissingWord: (blankedText: String, missingWord: String) = ("","")
     
     //practiceView
-    @Published var questionType: Question = .missingWord
+    @Published var questionType: Question = .guessLocation
     
     func fetchReference(location: VerseLocation) {
         adaptor.fetchVerseWithReference(location: location, completion: { reference in

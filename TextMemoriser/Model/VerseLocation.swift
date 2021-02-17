@@ -19,6 +19,20 @@ struct VerseLocation: Codable, Identifiable {
     var id: String {
         display
     }
+    
+    static func curatedVerses() -> [VerseLocation] {
+        var curatedVerses = [VerseLocation]()
+        curatedVerses.append(VerseLocation(book: Book.Colossians, chapter: 3, verse: 16))
+        curatedVerses.append(VerseLocation(book: Book.Jeremiah, chapter: 29, verse: 11))
+        curatedVerses.append(VerseLocation(book: Book.Philippians, chapter: 4, verse: 4))
+        curatedVerses.append(VerseLocation(book: Book.John, chapter: 10, verse: 10))
+        curatedVerses.append(VerseLocation(book: Book.Matthew, chapter: 6, verse: 34))
+        curatedVerses.append(VerseLocation(book: Book.John1, chapter: 5, verse: 14))
+        curatedVerses.append(VerseLocation(book: Book.Proverbs, chapter: 3, verse: 5))
+        curatedVerses.append(VerseLocation(book: Book.Malachi, chapter: 4, verse: 2))
+        
+        return curatedVerses
+    }
 }
 
 enum Book: String, Codable, CaseIterable {

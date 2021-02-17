@@ -39,6 +39,14 @@ struct AddLearningGoalView: View {
             }) {
                 Text("Add Verse to Learning Set")
             }
+            Section {
+                Button("Add curated verses to Learning Set", action: {
+                    for verse in VerseLocation.curatedVerses() {
+                        vm.addVerseToLearningSet(verse)
+                    }
+                    self.presentationMode.wrappedValue.dismiss()
+                })
+            }
         }
         
     }

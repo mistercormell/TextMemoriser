@@ -33,13 +33,13 @@ struct LearningSetView: View {
             }) {
                 Text("Add")
             }, trailing: EditButton())
-            .navigationTitle("Learning Set")
+            .navigationBarTitle("Learning Set")
             .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $showingAdd, content: {
             NavigationView {
                 AddLearningGoalView()
-                    .navigationTitle("Add Verse")
+                    .navigationBarTitle("Add Verse")
                     .navigationBarTitleDisplayMode(.inline)
             }
         })
