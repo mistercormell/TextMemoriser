@@ -14,7 +14,7 @@ struct LearnView: View {
         NavigationView {
             if vm.learningSet.count != 0 {
                 if let currentReference = vm.currentReference {
-                    Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, next: nextPassage)
+                    Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, next: vm.loadReference)
                         .navigationBarTitle("Learn the Verse")
                 } else {
                     ProgressView("Loading verses...")
@@ -23,11 +23,7 @@ struct LearnView: View {
                 Text("Please add verses to your learning set to start learning!")
             }
         }
-        .onAppear(perform: nextPassage)
-    }
-    
-    func nextPassage() {
-        vm.loadReference()
+        .onAppear(perform: vm.loadReference)
     }
 }
 

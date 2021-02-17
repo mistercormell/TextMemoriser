@@ -88,7 +88,6 @@ class StateController: ObservableObject {
         } else {
             questionType = .guessLocation
         }
-        //loadReference()
     }
     
     func addVerseToLearningSet(_ verseToAdd: VerseLocation) {
@@ -105,42 +104,14 @@ class StateController: ObservableObject {
         
         learningSet.remove(atOffsets: indexSet)
     }
-    
-    func getDocumentsDirectory() -> URL {
-        // find all possible documents directories for this user
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-
-        // just send back the first one, which ought to be the only one
-        return paths[0]
-    }
-    
+        
     func saveUserSettings() {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(learningSet) {
-            if let json = String(data: encoded, encoding: .utf8) {
-                //do file handling to save this json
-                let url = self.getDocumentsDirectory().appendingPathComponent("settings.json")
-                do {
-                    try json.write(to: url, atomically: true, encoding: .utf8)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
+        FileManager.default.save(to: "settings.json", object: learningSet)
     }
         
     func restoreUserSettings() {
-        let url = self.getDocumentsDirectory().appendingPathComponent("settings.json")
-        if let data = try? Data(contentsOf: url) {
-            let decoder = JSONDecoder()
-            if let loaded = try? decoder.decode([VerseLocation].self, from: data) {
-                learningSet = loaded
-            } else {
-                print("Failed to decode")
-                //fatalError("Failed to decode \(url) from documents.")
-            }
-            
-            
+        if let loadedLearningSet: [VerseLocation] = FileManager.default.load(from: "settings.json") {
+            learningSet = loadedLearningSet
         }
     }
 }
