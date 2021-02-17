@@ -13,13 +13,20 @@ struct LearningSetView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(stateController.learningSet) { location in
-                    Text(location.display)
+            Group {
+                if stateController.learningSet.count == 0 {
+                    Text("No verses in learning set. Add some verses using the Add button")
+                        .padding()
+                } else {
+                    List {
+                        ForEach(stateController.learningSet) { location in
+                            Text(location.display)
+                        }
+                        .onDelete(perform: { indexSet in
+                            stateController.removeVerseFromLearningSet(atOffset: indexSet)
+                        })
+                    }
                 }
-                .onDelete(perform: { indexSet in
-                    stateController.removeVerseFromLearningSet(atOffset: indexSet)
-                })
             }
             .navigationBarItems(leading: Button(action: {
                 self.showingAdd = true

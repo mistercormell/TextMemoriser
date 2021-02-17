@@ -14,15 +14,12 @@ struct VerseArrangeView: View {
     
     var body: some View {
         Content(passage: vm.currentReference, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $vm.wordsToPick)
-        .onAppear(perform: loadReference)
+            .onAppear(perform: vm.loadReference)
         .alert(isPresented: $vm.showingScore, content: {
                 Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         
     }
     
-    func loadReference() {
-        vm.loadReference()
-    }
     
     func checkAnswer() {
         if verseBeingBuilt == vm.currentReference?.text {
@@ -85,6 +82,7 @@ extension VerseArrangeView {
             NavigationView {
                 VStack {
                     Text(verseBeingBuilt)
+                        .padding()
                     Spacer()
                     Divider()
                     LazyVGrid(columns: columns, spacing: 20) {

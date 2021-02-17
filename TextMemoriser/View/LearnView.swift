@@ -12,11 +12,15 @@ struct LearnView: View {
     
     var body: some View {
         NavigationView {
-            if let currentReference = vm.currentReference {
-                Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, next: nextPassage)
-                    .navigationBarTitle("Learn the Verse")
+            if vm.learningSet.count != 0 {
+                if let currentReference = vm.currentReference {
+                    Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, next: nextPassage)
+                        .navigationBarTitle("Learn the Verse")
+                } else {
+                    ProgressView("Loading verses...")
+                }
             } else {
-                ProgressView("Loading verses...")
+                Text("Please add verses to your learning set to start learning!")
             }
         }
         .onAppear(perform: nextPassage)

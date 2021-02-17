@@ -27,6 +27,15 @@ struct Passage: Equatable {
         return wordsInVerses
     }
     
+    func getTextWithMissingWord() -> (blankedText: String, missingWord: String) {
+        let words = text.split(whereSeparator: \.isLetter.negation)
+        let missingWord = String(words.randomElement() ?? "")
+        let maskedMissingWord = String(repeating: "_", count: missingWord.count)
+        let blankedText = text.replacingOccurrences(of: missingWord, with: maskedMissingWord)
+        
+        return (blankedText, missingWord)
+    }
+    
     static func == (lhs: Passage, rhs: Passage) -> Bool {
         return lhs.text == rhs.text ? true : false
     }

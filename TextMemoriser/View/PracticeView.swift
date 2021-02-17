@@ -11,10 +11,16 @@ struct PracticeView: View {
     @EnvironmentObject var viewModel: StateController
     
     var body: some View {
-        if viewModel.questionType == .guessLocation {
-            GuessLocationView()
+        if viewModel.learningSet.count != 0 {
+            if viewModel.questionType == .missingWord {
+                GuessMissingWordView()
+            } else if viewModel.questionType == .guessLocation {
+                GuessLocationView()
+            } else {
+                VerseArrangeView()
+            }
         } else {
-            VerseArrangeView()
+            Text("Please add verses to your learning set to start practicing!")
         }
     }
 }

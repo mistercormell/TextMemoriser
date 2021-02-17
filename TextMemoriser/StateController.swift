@@ -30,8 +30,11 @@ class StateController: ObservableObject {
     //arrangeVerseView
     @Published var wordsToPick = [WordInVerse]()
     
+    //guessMissingWordView
+    @Published var textWithMissingWord: (blankedText: String, missingWord: String) = ("","")
+    
     //practiceView
-    @Published var questionType: Question = .guessLocation
+    @Published var questionType: Question = .missingWord
     
     func fetchReference(location: VerseLocation) {
         adaptor.fetchVerseWithReference(location: location, completion: { reference in
@@ -49,6 +52,7 @@ class StateController: ObservableObject {
                     if index == 0 {
                         self.selectReference()
                         self.wordsToPick = self.currentReference?.wordsInVerse ?? []
+                        self.textWithMissingWord = self.currentReference?.getTextWithMissingWord() ?? ("","")
                     }
                 }
             })
@@ -79,10 +83,12 @@ class StateController: ObservableObject {
     func nextQuestion() {
         if questionType == .guessLocation {
             questionType = .arrangeVerse
+        } else if questionType == .arrangeVerse {
+            questionType = .missingWord
         } else {
             questionType = .guessLocation
         }
-        loadReference()
+        //loadReference()
     }
     
     func addVerseToLearningSet(_ verseToAdd: VerseLocation) {
