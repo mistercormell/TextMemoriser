@@ -85,17 +85,15 @@ extension VerseArrangeView {
                         .padding()
                     Spacer()
                     Divider()
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(wordsToPick, id: \.id) { word in
-                            Button(action: { pickWord(word) }) {
-                                Text(word.word)
-                                    .padding(5)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(5)
-                            }
+                    FlowLayoutView(mode: .vstack, binding: .constant(5), items: wordsToPick, viewMapping: { word in
+                        Button(action: { pickWord(word) }) {
+                            Text(word.word)
+                                .padding(5)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
                         }
-                    }
+                    })
                     Divider()
                     HStack {
                         Button("Check", action: check)

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B413F3E625DC5016001D974C /* GuessMissingWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F3E525DC5016001D974C /* GuessMissingWordView.swift */; };
 		B413F3EE25DD27C5001D974C /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F3ED25DD27C5001D974C /* Bool.swift */; };
+		B413F40225DD71E1001D974C /* FlowLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F40125DD71E0001D974C /* FlowLayoutView.swift */; };
 		B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D425D85EE00064A04D /* LearningSetView.swift */; };
 		B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D925D8674A0064A04D /* VersePickerView.swift */; };
 		B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478DE25D869610064A04D /* AddLearningGoalView.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		B413F3E525DC5016001D974C /* GuessMissingWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessMissingWordView.swift; sourceTree = "<group>"; };
 		B413F3ED25DD27C5001D974C /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		B413F40125DD71E0001D974C /* FlowLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayoutView.swift; sourceTree = "<group>"; };
 		B42478D425D85EE00064A04D /* LearningSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningSetView.swift; sourceTree = "<group>"; };
 		B42478D925D8674A0064A04D /* VersePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersePickerView.swift; sourceTree = "<group>"; };
 		B42478DE25D869610064A04D /* AddLearningGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLearningGoalView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */,
 				B42478D425D85EE00064A04D /* LearningSetView.swift */,
 				B413F3E525DC5016001D974C /* GuessMissingWordView.swift */,
+				B413F40125DD71E0001D974C /* FlowLayoutView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */,
 				B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */,
 				B4E6649825A3372F0087AC26 /* VerseArrangeView.swift in Sources */,
+				B413F40225DD71E1001D974C /* FlowLayoutView.swift in Sources */,
 				B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */,
 				B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */,
 				B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */,

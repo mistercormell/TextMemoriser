@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WordInVerse: Identifiable {
+struct WordInVerse: Identifiable, Hashable {
     let id: Int
     let word: String
     
