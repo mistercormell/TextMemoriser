@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VerseLocation: Codable, Identifiable {
+struct VerseLocation: Codable, Identifiable, Equatable {
     let book: Book
     let chapter: Int
     let verse: Int
@@ -18,6 +18,10 @@ struct VerseLocation: Codable, Identifiable {
     
     var id: String {
         display
+    }
+    
+    static func == (lhs: VerseLocation, rhs: VerseLocation) -> Bool {
+        return lhs.id == rhs.id ? true : false
     }
     
     static func curatedVerses() -> [VerseLocation] {

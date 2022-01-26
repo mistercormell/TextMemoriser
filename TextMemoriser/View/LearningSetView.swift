@@ -20,7 +20,9 @@ struct LearningSetView: View {
                 } else {
                     List {
                         ForEach(stateController.learningSet) { location in
-                            Text(location.display)
+                            NavigationLink(location.display) {
+                                LearnView(selectedVerse: location)
+                            }
                         }
                         .onDelete(perform: { indexSet in
                             stateController.removeVerseFromLearningSet(atOffset: indexSet)

@@ -19,21 +19,16 @@ struct RootTabView: View {
                     Text("Goals")
                 }
                 .tag(0)
-            LearnView()
-                .tabItem {
-                    Image(systemName: "books.vertical")
-                    Text("Learn")
-                }
-                .tag(1)
             PracticeView()
                 .tabItem {
                     Image(systemName: "graduationcap")
                     Text("Practice")
                 }
-                .tag(2)
+                .tag(1)
 
         }
-        .onAppear(perform: vm.restoreUserSettings)
+        .onAppear(perform: { vm.restoreUserSettings()
+            vm.fetchReferences() })
     }
 }
 

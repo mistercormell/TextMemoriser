@@ -71,6 +71,12 @@ class StateController: ObservableObject {
         self.currentReference = randomReference
     }
     
+    func updateCurrentReference(location: VerseLocation) {
+        self.currentReference = passages.first(where: {
+            $0.location == location
+        })
+    }
+    
     func loadReference() {
         if passages.count == 0 {
             fetchReferences()
