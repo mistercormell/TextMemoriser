@@ -53,7 +53,7 @@ class StateController: ObservableObject {
                     self.passages.append(reference)
                     if index == 0 {
                         self.selectReference()
-                        self.wordsToPick = self.currentReference?.getVerseChunks(size: wordGroupSize) ?? []
+                        self.wordsToPick = self.currentReference?.getVerseChunks(size: self.wordGroupSize) ?? []
                         self.textWithMissingWord = self.currentReference?.getTextWithMissingWord() ?? ("","")
                     }
                 }
@@ -91,6 +91,7 @@ class StateController: ObservableObject {
     func nextQuestion() {
         if questionType == .guessLocation {
             questionType = .arrangeVerse
+            wordGroupSize = Int.random(in: 1...4)
         } else if questionType == .arrangeVerse {
             questionType = .missingWord
         } else {
