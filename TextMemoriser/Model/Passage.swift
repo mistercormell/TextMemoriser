@@ -17,14 +17,26 @@ struct Passage: Equatable {
     }
     
     var wordsInVerse: [WordInVerse] {
-        let words = text.components(separatedBy: " ").shuffled()
+        return getVerseChunks(size: 1)
+    }
+    
+    func getVerseChunks(size: Int) -> [WordInVerse] {
+        let words = text.components(separatedBy: " ")
         var wordsInVerses = [WordInVerse]()
         
-        for (index, word) in words.enumerated() {
-            wordsInVerses.append(WordInVerse(id: index, word: word))
+        var chunks = [String]()
+        
+        for i in stride(from: 0, to: words.count, by: size) {
+            let chunk = words[i ..< Swift.min(i + size, words.count)]
+            let chunkAsString = chunk.joined(separator: " ")
+            chunks.append(chunkAsString)
         }
         
-        return wordsInVerses
+        for (index, chunk) in chunks.enumerated() {
+            wordsInVerses.append(WordInVerse(id: index, word: chunk))
+        }
+        
+        return wordsInVerses.shuffled()
     }
     
     func getTextWithMissingWord() -> (blankedText: String, missingWord: String) {

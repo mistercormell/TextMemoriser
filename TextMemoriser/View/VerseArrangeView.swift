@@ -35,7 +35,7 @@ struct VerseArrangeView: View {
     func reset() {
         verseBeingBuilt = ""
         wordsInVerse = []
-        vm.wordsToPick = vm.currentReference?.wordsInVerse ?? []
+        vm.wordsToPick = vm.currentReference?.getVerseChunks(size: vm.wordGroupSize) ?? []
     }
     
     func undo() {

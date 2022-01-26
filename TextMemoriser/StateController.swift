@@ -29,6 +29,7 @@ class StateController: ObservableObject {
     @Published var score = 0
     
     //arrangeVerseView
+    var wordGroupSize = 4
     @Published var wordsToPick = [WordInVerse]()
     
     //guessMissingWordView
@@ -52,7 +53,7 @@ class StateController: ObservableObject {
                     self.passages.append(reference)
                     if index == 0 {
                         self.selectReference()
-                        self.wordsToPick = self.currentReference?.wordsInVerse ?? []
+                        self.wordsToPick = self.currentReference?.getVerseChunks(size: wordGroupSize) ?? []
                         self.textWithMissingWord = self.currentReference?.getTextWithMissingWord() ?? ("","")
                     }
                 }
@@ -83,7 +84,7 @@ class StateController: ObservableObject {
             fetchReferences()
         } else {
             selectReference()
-            wordsToPick = currentReference?.wordsInVerse ?? []
+            wordsToPick = currentReference?.getVerseChunks(size: wordGroupSize) ?? []
         }
     }
     
