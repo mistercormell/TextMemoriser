@@ -1,0 +1,15 @@
+
+Free Tiers
+-5000 api request/day
+
+
+Next Tier - 50 USD / month
+- caching restriction removed
+
+
+Stats Tracking:
+- Call to HTTP Request to get an 'image' passing 3 things: FUMS token, id-token
+- Don't have to process response
+
+
+New Development Tool in the next month or so. By end of Summer

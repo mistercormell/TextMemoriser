@@ -14,6 +14,8 @@
 		B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D925D8674A0064A04D /* VersePickerView.swift */; };
 		B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478DE25D869610064A04D /* AddLearningGoalView.swift */; };
 		B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D624D25D977D400CD2C65 /* UserDocuments.swift */; };
+		B44C221E25DF04E2002AF368 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44C221D25DF04E2002AF368 /* GameKit.framework */; };
+		B45D72A925EE9A5700CF8099 /* BibleApi in Resources */ = {isa = PBXBuildFile; fileRef = B45D72A825EE9A5700CF8099 /* BibleApi */; };
 		B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BB525C5E92F00A9D800 /* LearnView.swift */; };
 		B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */; };
 		B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */; };
@@ -58,6 +60,8 @@
 		B42478D925D8674A0064A04D /* VersePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersePickerView.swift; sourceTree = "<group>"; };
 		B42478DE25D869610064A04D /* AddLearningGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLearningGoalView.swift; sourceTree = "<group>"; };
 		B43D624D25D977D400CD2C65 /* UserDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDocuments.swift; sourceTree = "<group>"; };
+		B44C221D25DF04E2002AF368 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		B45D72A825EE9A5700CF8099 /* BibleApi */ = {isa = PBXFileReference; lastKnownFileType = text; path = BibleApi; sourceTree = "<group>"; };
 		B4AA6BB525C5E92F00A9D800 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		B4E6645425A20D070087AC26 /* TextMemoriser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMemoriser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B44C221E25DF04E2002AF368 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +159,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B44C221C25DF04E2002AF368 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B44C221D25DF04E2002AF368 /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B4E6644B25A20D070087AC26 = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +174,7 @@
 				B4E6646825A20D080087AC26 /* TextMemoriserTests */,
 				B4E6647325A20D080087AC26 /* TextMemoriserUITests */,
 				B4E6645525A20D070087AC26 /* Products */,
+				B44C221C25DF04E2002AF368 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +200,7 @@
 				B4E6645B25A20D080087AC26 /* Assets.xcassets */,
 				B4E6646025A20D080087AC26 /* Info.plist */,
 				B4E6645D25A20D080087AC26 /* Preview Content */,
+				B45D72A825EE9A5700CF8099 /* BibleApi */,
 			);
 			path = TextMemoriser;
 			sourceTree = "<group>";
@@ -319,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B45D72A925EE9A5700CF8099 /* BibleApi in Resources */,
 				B4E6645F25A20D080087AC26 /* Preview Assets.xcassets in Resources */,
 				B4E6645C25A20D080087AC26 /* Assets.xcassets in Resources */,
 			);
@@ -522,6 +538,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TextMemoriser/Preview Content\"";
 				DEVELOPMENT_TEAM = 599QPW35GD;
 				ENABLE_PREVIEWS = YES;
@@ -545,6 +562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TextMemoriser/Preview Content\"";
 				DEVELOPMENT_TEAM = 599QPW35GD;
 				ENABLE_PREVIEWS = YES;
