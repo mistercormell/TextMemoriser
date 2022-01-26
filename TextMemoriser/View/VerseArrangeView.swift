@@ -16,7 +16,7 @@ struct VerseArrangeView: View {
         Content(passage: vm.currentReference, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $vm.wordsToPick)
             .onAppear(perform: vm.loadReference)
         .alert(isPresented: $vm.showingScore, content: {
-                Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+            Alert(title: Text("\(vm.alertTitle)"), message: Text("\(vm.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         
     }
     
@@ -26,7 +26,8 @@ struct VerseArrangeView: View {
             vm.alertTitle = "Correct"
             vm.score += 1
         } else {
-            vm.alertTitle = "Wrong!"
+            vm.alertTitle = "The correct answer is"
+            vm.alertBody = "\(vm.currentReference?.text ?? "")"
         }
         vm.showingScore = true
     }

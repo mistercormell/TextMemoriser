@@ -16,7 +16,7 @@ struct GuessMissingWordView: View {
             Content(verseWithBlank: vm.textWithMissingWord.blankedText , check: checkAnswer, missingWord: $missingWord)
                 .navigationTitle(vm.currentReference?.displayLocationWithCopyright ?? "")
                 .alert(isPresented: $vm.showingScore, content: {
-                        Alert(title: Text("\(vm.alertTitle)"), message: Text("Your score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+                    Alert(title: Text("\(vm.alertTitle)"), message: Text("\(vm.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
                 .onAppear(perform: {
                     vm.loadReference()
                     vm.textWithMissingWord = vm.currentReference?.getTextWithMissingWord() ?? ("","")
@@ -29,7 +29,8 @@ struct GuessMissingWordView: View {
             vm.alertTitle = "Correct"
             vm.score += 1
         } else {
-            vm.alertTitle = "Wrong!"
+            vm.alertTitle = "The correct answer is"
+            vm.alertBody = "\(vm.textWithMissingWord.missingWord)"
         }
         vm.showingScore = true
     }

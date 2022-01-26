@@ -24,6 +24,7 @@ class StateController: ObservableObject {
     @Published var verse = 1
     @Published var selectedBook = Book.Genesis
     @Published var alertTitle = ""
+    @Published var alertBody = ""
     @Published var showingScore = false
     @Published var score = 0
     
