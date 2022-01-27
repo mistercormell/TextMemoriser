@@ -13,30 +13,30 @@ struct GuessLocationView: View {
     @State var chapter = 1
     @State var verse = 1
     @State var selectedBook = Book.Genesis
+    
+    let nextQuestion: () -> Void
+    let passage: Passage
         
     var body: some View {
         NavigationView {
-            Content(passage: vm.currentReference, check: checkAnswer, bookChoice: $selectedBook, chapterChoice: $chapter, verseChoice: $verse)
+            Content(passage: passage, check: checkAnswer, bookChoice: $selectedBook, chapterChoice: $chapter, verseChoice: $verse)
                 
                 .navigationBarTitle("Guess the Location")
                 .alert(isPresented: $questionFeedback.isShowing, content: {
-                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) { nextQuestion() } )})
         }
-        .onAppear(perform: vm.loadReference)
     }
     
     func checkAnswer() {
-        if let correctReference = vm.currentReference {
-            if selectedBook == correctReference.location.book && chapter == correctReference.location.chapter && verse == correctReference.location.verse {
-                vm.score += 1
-                questionFeedback.alertTitle = "Correct"
-                questionFeedback.alertBody = "Keep on going!"
-            } else {
-                questionFeedback.alertTitle = "Not quite!"
-                questionFeedback.alertBody = "\(correctReference.location.display)"
-            }
-            questionFeedback.isShowing = true
+        if selectedBook == passage.location.book && chapter == passage.location.chapter && verse == passage.location.verse {
+            vm.score += 1
+            questionFeedback.alertTitle = "Correct"
+            questionFeedback.alertBody = "Keep on going!"
+        } else {
+            questionFeedback.alertTitle = "Not quite!"
+            questionFeedback.alertBody = "\(passage.location.display)"
         }
+        questionFeedback.isShowing = true
     }
 }
 

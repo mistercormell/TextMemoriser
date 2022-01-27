@@ -13,14 +13,10 @@ struct LearnView: View {
     
     var body: some View {
         NavigationView {
-            if vm.learningSet.count != 0 {
-                if let currentReference = vm.currentReference {
-                    Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, passageTextOpacity: 1.0)
-                } else {
-                    ProgressView("Loading verses...")
-                }
+            if let currentReference = vm.currentReference {
+                Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, passageTextOpacity: 1.0)
             } else {
-                Text("Please add verses to your learning set to start learning!")
+                ProgressView("Loading verses...")
             }
         }
         .onAppear(perform: { vm.updateCurrentReference(location: selectedVerse) })

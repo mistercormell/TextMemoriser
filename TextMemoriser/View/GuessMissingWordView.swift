@@ -13,14 +13,16 @@ struct GuessMissingWordView: View {
     @State var textWithMissingWord: (blankedText: String, missingWord: String) = ("","")
     @State var missingWord: String = ""
     
+    let nextQuestion: () -> Void
+    let passage: Passage
+    
     var body: some View {
         NavigationView {
             Content(verseWithBlank: textWithMissingWord.blankedText , check: checkAnswer, missingWord: $missingWord)
-                .navigationTitle(vm.currentReference?.displayLocationWithCopyright ?? "")
+                .navigationTitle(passage.displayLocationWithCopyright)
                 .alert(isPresented: $questionFeedback.isShowing, content: {
-                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) { nextQuestion() } )})
                 .onAppear(perform: {
-                    vm.loadReference()
                     textWithMissingWord = vm.currentReference?.getTextWithMissingWord() ?? ("","")
                 })
         }

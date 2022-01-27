@@ -80,6 +80,20 @@ class StateController: ObservableObject {
         }
     }
     
+    func constructQuestionSet() -> [(passage: Passage, type: Question)] {
+        var questionSet: [(passage: Passage, type: Question)] = []
+        
+        if self.passages.isEmpty.negation {
+            for _ in 1...10 {
+                let randomPassage = self.passages.randomElement()!
+                let randomQuestion = Question.allCases.randomElement()!
+                questionSet.append((passage: randomPassage, type: randomQuestion))
+            }
+        }
+        
+        return questionSet
+    }
+        
     func addVerseToLearningSet(_ verseToAdd: VerseLocation) {
         fetchReference(location: verseToAdd)
         learningSet.append(verseToAdd)
