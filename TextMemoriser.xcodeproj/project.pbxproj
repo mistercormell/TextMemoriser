@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40B25A527A1B8E300A037E9 /* VerseMastery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B25A427A1B8E200A037E9 /* VerseMastery.swift */; };
 		B413F3E625DC5016001D974C /* GuessMissingWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F3E525DC5016001D974C /* GuessMissingWordView.swift */; };
 		B413F3EE25DD27C5001D974C /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F3ED25DD27C5001D974C /* Bool.swift */; };
 		B413F40225DD71E1001D974C /* FlowLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F40125DD71E0001D974C /* FlowLayoutView.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B40B25A427A1B8E200A037E9 /* VerseMastery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseMastery.swift; sourceTree = "<group>"; };
 		B413F3E525DC5016001D974C /* GuessMissingWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessMissingWordView.swift; sourceTree = "<group>"; };
 		B413F3ED25DD27C5001D974C /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
 		B413F40125DD71E0001D974C /* FlowLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayoutView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				B4E664C225AA05520087AC26 /* VerseLocation.swift */,
 				B4E664C725AA05910087AC26 /* Passage.swift */,
 				B4E664DD25AA08EB0087AC26 /* Question.swift */,
+				B40B25A427A1B8E200A037E9 /* VerseMastery.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */,
+				B40B25A527A1B8E300A037E9 /* VerseMastery.swift in Sources */,
 				B4E664B325A723A10087AC26 /* StateController.swift in Sources */,
 				B4E664C325AA05520087AC26 /* VerseLocation.swift in Sources */,
 				B4E664A925A71C600087AC26 /* EsvBibleAdaptor.swift in Sources */,
@@ -538,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TextMemoriser/Preview Content\"";
 				DEVELOPMENT_TEAM = 599QPW35GD;
 				ENABLE_PREVIEWS = YES;
@@ -548,7 +552,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrcormell.TextMemoriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -562,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TextMemoriser/Preview Content\"";
 				DEVELOPMENT_TEAM = 599QPW35GD;
 				ENABLE_PREVIEWS = YES;
@@ -572,7 +576,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrcormell.TextMemoriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

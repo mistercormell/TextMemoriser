@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GuessLocationView: View {
     @EnvironmentObject var vm: StateController
+    @State var alertBody: String = ""
         
     var body: some View {
         NavigationView {
@@ -16,7 +17,7 @@ struct GuessLocationView: View {
                 
                 .navigationBarTitle("Guess the Location")
                 .alert(isPresented: $vm.showingScore, content: {
-                        Alert(title: Text("\(vm.alertTitle)"), message: Text("\(vm.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+                        Alert(title: Text("\(vm.alertTitle)"), message: Text("\(alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         }
         .onAppear(perform: vm.loadReference)
     }
@@ -26,9 +27,10 @@ struct GuessLocationView: View {
             if vm.selectedBook == correctReference.location.book && vm.chapter == correctReference.location.chapter && vm.verse == correctReference.location.verse {
                 vm.alertTitle = "Correct"
                 vm.score += 1
+                alertBody = ""
             } else {
                 vm.alertTitle = "The correct answer is"
-                vm.alertBody = "\(correctReference.location.display)"
+                alertBody = "\(correctReference.location.display)"
             }
             vm.showingScore = true
         }

@@ -25,6 +25,7 @@ struct VerseArrangeView: View {
         if verseBeingBuilt == vm.currentReference?.text {
             vm.alertTitle = "Correct"
             vm.score += 1
+            vm.alertBody = ""
         } else {
             vm.alertTitle = "The correct answer is"
             vm.alertBody = "\(vm.currentReference?.text ?? "")"

@@ -28,6 +28,7 @@ struct GuessMissingWordView: View {
         if missingWord.caseInsensitiveCompare(vm.textWithMissingWord.missingWord) == .orderedSame {
             vm.alertTitle = "Correct"
             vm.score += 1
+            vm.alertBody = ""
         } else {
             vm.alertTitle = "The correct answer is"
             vm.alertBody = "\(vm.textWithMissingWord.missingWord)"
