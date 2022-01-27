@@ -23,15 +23,6 @@ class StateController: ObservableObject {
     @Published var score = 0
     @Published var questionType: Question = .guessLocation
 
-
-    //arrangeVerseView
-    var wordGroupSize = 4
-    @Published var wordsToPick = [WordInVerse]()
-    
-    //guessMissingWordView
-    @Published var textWithMissingWord: (blankedText: String, missingWord: String) = ("","")
-    
-
     func fetchReference(location: VerseLocation) {
         adaptor.fetchVerseWithReference(location: location, completion: { reference in
             DispatchQueue.main.async {
@@ -47,8 +38,6 @@ class StateController: ObservableObject {
                     self.passages.append(reference)
                     if index == 0 {
                         self.selectReference()
-                        self.wordsToPick = self.currentReference?.getVerseChunks(size: self.wordGroupSize) ?? []
-                        self.textWithMissingWord = self.currentReference?.getTextWithMissingWord() ?? ("","")
                     }
                 }
             })
@@ -78,14 +67,12 @@ class StateController: ObservableObject {
             fetchReferences()
         } else {
             selectReference()
-            wordsToPick = currentReference?.getVerseChunks(size: wordGroupSize) ?? []
         }
     }
     
     func nextQuestion() {
         if questionType == .guessLocation {
             questionType = .arrangeVerse
-            wordGroupSize = Int.random(in: 1...4)
         } else if questionType == .arrangeVerse {
             questionType = .missingWord
         } else {

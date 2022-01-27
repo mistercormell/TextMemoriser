@@ -9,13 +9,18 @@ import SwiftUI
 
 struct VerseArrangeView: View {
     @State var wordsInVerse = [WordInVerse]()
+    @State var wordsToPick = [WordInVerse]()
     @State var verseBeingBuilt = ""
     @StateObject var questionFeedback = QuestionFeedback()
     @EnvironmentObject var vm: StateController
+    var wordGroupSize = 4
     
     var body: some View {
-        Content(passage: vm.currentReference, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $vm.wordsToPick)
-            .onAppear(perform: vm.loadReference)
+        Content(passage: vm.currentReference, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $wordsToPick)
+            .onAppear(perform: {
+                vm.loadReference()
+                wordsToPick = vm.currentReference?.getVerseChunks(size: wordGroupSize) ?? []
+            })
             .alert(isPresented: $questionFeedback.isShowing, content: {
                 Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         
@@ -37,7 +42,7 @@ struct VerseArrangeView: View {
     func reset() {
         verseBeingBuilt = ""
         wordsInVerse = []
-        vm.wordsToPick = vm.currentReference?.getVerseChunks(size: vm.wordGroupSize) ?? []
+        wordsToPick = vm.currentReference?.getVerseChunks(size: wordGroupSize) ?? []
     }
     
     func undo() {
@@ -48,7 +53,7 @@ struct VerseArrangeView: View {
         }.joined(separator: " ")
         
         if let word = wordToUndo {
-            vm.wordsToPick.append(word)
+            wordsToPick.append(word)
         }
     }
         
@@ -59,7 +64,7 @@ struct VerseArrangeView: View {
             word.word
         }.joined(separator: " ")
 
-        vm.wordsToPick.removeAll {
+        wordsToPick.removeAll {
             $0.id == word.id
         }
     }
