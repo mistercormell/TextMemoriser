@@ -15,19 +15,15 @@ class StateController: ObservableObject {
         }
     }
     
+    var progress: [VerseLocation:VerseMastery] = [:]
     let adaptor = EsvBibleAdaptor()
+    
     @Published var passages: [Passage] = []
     @Published var currentReference: Passage?
-
-    //guessLocationView
-    @Published var chapter = 1
-    @Published var verse = 1
-    @Published var selectedBook = Book.Genesis
-    @Published var alertTitle = ""
-    @Published var alertBody = ""
-    @Published var showingScore = false
     @Published var score = 0
-    
+    @Published var questionType: Question = .guessLocation
+
+
     //arrangeVerseView
     var wordGroupSize = 4
     @Published var wordsToPick = [WordInVerse]()
@@ -35,9 +31,7 @@ class StateController: ObservableObject {
     //guessMissingWordView
     @Published var textWithMissingWord: (blankedText: String, missingWord: String) = ("","")
     
-    //practiceView
-    @Published var questionType: Question = .guessLocation
-    
+
     func fetchReference(location: VerseLocation) {
         adaptor.fetchVerseWithReference(location: location, completion: { reference in
             DispatchQueue.main.async {

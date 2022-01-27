@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct VerseMastery {
+    var attempts: Int
+    var correct: Int
+    var lastStudied: Date
+}

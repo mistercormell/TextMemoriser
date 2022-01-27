@@ -10,27 +10,28 @@ import SwiftUI
 struct VerseArrangeView: View {
     @State var wordsInVerse = [WordInVerse]()
     @State var verseBeingBuilt = ""
+    @StateObject var questionFeedback = QuestionFeedback()
     @EnvironmentObject var vm: StateController
     
     var body: some View {
         Content(passage: vm.currentReference, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $vm.wordsToPick)
             .onAppear(perform: vm.loadReference)
-        .alert(isPresented: $vm.showingScore, content: {
-            Alert(title: Text("\(vm.alertTitle)"), message: Text("\(vm.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+            .alert(isPresented: $questionFeedback.isShowing, content: {
+                Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         
     }
     
     
     func checkAnswer() {
         if verseBeingBuilt == vm.currentReference?.text {
-            vm.alertTitle = "Correct"
+            questionFeedback.alertTitle = "Correct"
             vm.score += 1
-            vm.alertBody = ""
+            questionFeedback.alertBody = ""
         } else {
-            vm.alertTitle = "The correct answer is"
-            vm.alertBody = "\(vm.currentReference?.text ?? "")"
+            questionFeedback.alertTitle = "The correct answer is"
+            questionFeedback.alertBody = "\(vm.currentReference?.text ?? "")"
         }
-        vm.showingScore = true
+        questionFeedback.isShowing = true
     }
     
     func reset() {

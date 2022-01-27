@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VerseLocation: Codable, Identifiable, Equatable {
+struct VerseLocation: Codable, Identifiable, Equatable, Hashable {
     let book: Book
     let chapter: Int
     let verse: Int

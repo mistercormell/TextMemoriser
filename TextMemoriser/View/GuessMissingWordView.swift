@@ -9,14 +9,15 @@ import SwiftUI
 
 struct GuessMissingWordView: View {
     @EnvironmentObject var vm: StateController
+    @StateObject var questionFeedback = QuestionFeedback()
     @State var missingWord: String = ""
     
     var body: some View {
         NavigationView {
             Content(verseWithBlank: vm.textWithMissingWord.blankedText , check: checkAnswer, missingWord: $missingWord)
                 .navigationTitle(vm.currentReference?.displayLocationWithCopyright ?? "")
-                .alert(isPresented: $vm.showingScore, content: {
-                    Alert(title: Text("\(vm.alertTitle)"), message: Text("\(vm.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+                .alert(isPresented: $questionFeedback.isShowing, content: {
+                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
                 .onAppear(perform: {
                     vm.loadReference()
                     vm.textWithMissingWord = vm.currentReference?.getTextWithMissingWord() ?? ("","")
@@ -26,14 +27,14 @@ struct GuessMissingWordView: View {
     
     func checkAnswer() {
         if missingWord.caseInsensitiveCompare(vm.textWithMissingWord.missingWord) == .orderedSame {
-            vm.alertTitle = "Correct"
+            questionFeedback.alertTitle = "Correct"
             vm.score += 1
-            vm.alertBody = ""
+            questionFeedback.alertBody = ""
         } else {
-            vm.alertTitle = "The correct answer is"
-            vm.alertBody = "\(vm.textWithMissingWord.missingWord)"
-        }
-        vm.showingScore = true
+            questionFeedback.alertTitle = "The correct answer is"
+            questionFeedback.alertBody = "\(vm.textWithMissingWord.missingWord)"
+        } 
+        questionFeedback.isShowing = true
     }
 }
 

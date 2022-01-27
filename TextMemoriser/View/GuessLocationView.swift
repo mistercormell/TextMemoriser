@@ -9,34 +9,35 @@ import SwiftUI
 
 struct GuessLocationView: View {
     @EnvironmentObject var vm: StateController
-    @State var alertBody: String = ""
+    @StateObject var questionFeedback = QuestionFeedback()
+    @State var chapter = 1
+    @State var verse = 1
+    @State var selectedBook = Book.Genesis
         
     var body: some View {
         NavigationView {
-            Content(passage: vm.currentReference, check: checkAnswer, bookChoice: $vm.selectedBook, chapterChoice: $vm.chapter, verseChoice: $vm.verse)
+            Content(passage: vm.currentReference, check: checkAnswer, bookChoice: $selectedBook, chapterChoice: $chapter, verseChoice: $verse)
                 
                 .navigationBarTitle("Guess the Location")
-                .alert(isPresented: $vm.showingScore, content: {
-                        Alert(title: Text("\(vm.alertTitle)"), message: Text("\(alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
+                .alert(isPresented: $questionFeedback.isShowing, content: {
+                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) {vm.nextQuestion()} )})
         }
         .onAppear(perform: vm.loadReference)
     }
     
     func checkAnswer() {
         if let correctReference = vm.currentReference {
-            if vm.selectedBook == correctReference.location.book && vm.chapter == correctReference.location.chapter && vm.verse == correctReference.location.verse {
-                vm.alertTitle = "Correct"
+            if selectedBook == correctReference.location.book && chapter == correctReference.location.chapter && verse == correctReference.location.verse {
                 vm.score += 1
-                alertBody = ""
+                questionFeedback.alertTitle = "Correct"
+                questionFeedback.alertBody = "Keep on going!"
             } else {
-                vm.alertTitle = "The correct answer is"
-                alertBody = "\(correctReference.location.display)"
+                questionFeedback.alertTitle = "Not quite!"
+                questionFeedback.alertBody = "\(correctReference.location.display)"
             }
-            vm.showingScore = true
+            questionFeedback.isShowing = true
         }
     }
-    
-    
 }
 
 extension GuessLocationView {
