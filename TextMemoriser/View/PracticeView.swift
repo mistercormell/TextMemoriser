@@ -9,11 +9,10 @@ import SwiftUI
 
 struct PracticeView: View {
     @EnvironmentObject var viewModel: StateController
-    @State var questions: [(passage: Passage, type: Question)] = []
-    @State var current: Int = 0
+    @StateObject var practiceVm = PracticeViewModel()
     
     var body: some View {
-        if questions.isEmpty || current > questions.count {
+        if practiceVm.isEnd || practiceVm.questions.isEmpty {
             HStack {
                 Button("Start Daily Challenge") {
                     loadDailyChallenge()
@@ -24,24 +23,21 @@ struct PracticeView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
             }
         } else {
-            let question = questions[current]
+            let question = practiceVm.question
             if question.type == .guessLocation {
-                GuessLocationView(nextQuestion: nextQuestion, passage: question.passage)
+                GuessLocationView(practiceVm: practiceVm)
             } else if question.type == .missingWord {
-                GuessMissingWordView(nextQuestion: nextQuestion, passage: question.passage)
+                GuessMissingWordView(practiceVm: practiceVm)
             } else {
-                VerseArrangeView(wordGroupSize: Int.random(in: 1...4), nextQuestion: nextQuestion, passage: question.passage)
+                VerseArrangeView(practiceVm: practiceVm, wordGroupSize: Int.random(in: 1...4))
             }
         }
         
     }
     
-    func nextQuestion() {
-        current += 1
-    }
-    
     func loadDailyChallenge() {
-        questions = viewModel.constructQuestionSet()
+        practiceVm.isEnd = false
+        practiceVm.questions = viewModel.constructQuestionSet(of: Question.missingWord)
     }
 
 }

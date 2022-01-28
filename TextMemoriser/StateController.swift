@@ -32,28 +32,13 @@ class StateController: ObservableObject {
     }
     
     func fetchReferences() {
-        for (index, verse) in learningSet.enumerated() {
+        for verse in learningSet {
             adaptor.fetchVerseWithReference(location: verse, completion: { reference in
                 DispatchQueue.main.async {
                     self.passages.append(reference)
-                    if index == 0 {
-                        self.selectReference()
-                    }
                 }
             })
         }
-    }
-    
-    func selectReference() {
-        var randomReference = self.passages.randomElement()
-        
-        if passages.count > 1 {
-            while randomReference == self.currentReference {
-                randomReference = self.passages.randomElement()
-            }
-        }
-        
-        self.currentReference = randomReference
     }
     
     func updateCurrentReference(location: VerseLocation) {
@@ -62,31 +47,17 @@ class StateController: ObservableObject {
         })
     }
     
-    func loadReference() {
-        if passages.count == 0 {
-            fetchReferences()
-        } else {
-            selectReference()
-        }
-    }
-    
-    func nextQuestion() {
-        if questionType == .guessLocation {
-            questionType = .arrangeVerse
-        } else if questionType == .arrangeVerse {
-            questionType = .missingWord
-        } else {
-            questionType = .guessLocation
-        }
-    }
-    
     func constructQuestionSet() -> [(passage: Passage, type: Question)] {
+        return constructQuestionSet(of: Question.allCases.randomElement()!)
+    }
+        
+    func constructQuestionSet(of questionType: Question) -> [(passage: Passage, type: Question)] {
         var questionSet: [(passage: Passage, type: Question)] = []
         
         if self.passages.isEmpty.negation {
             for _ in 1...10 {
                 let randomPassage = self.passages.randomElement()!
-                let randomQuestion = Question.allCases.randomElement()!
+                let randomQuestion = questionType
                 questionSet.append((passage: randomPassage, type: randomQuestion))
             }
         }

@@ -18,6 +18,7 @@
 		B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D624D25D977D400CD2C65 /* UserDocuments.swift */; };
 		B44C221E25DF04E2002AF368 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44C221D25DF04E2002AF368 /* GameKit.framework */; };
 		B45D72A925EE9A5700CF8099 /* BibleApi in Resources */ = {isa = PBXBuildFile; fileRef = B45D72A825EE9A5700CF8099 /* BibleApi */; };
+		B4820A9627A2F6CF00D1F76D /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */; };
 		B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BB525C5E92F00A9D800 /* LearnView.swift */; };
 		B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */; };
 		B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */; };
@@ -66,6 +67,7 @@
 		B43D624D25D977D400CD2C65 /* UserDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDocuments.swift; sourceTree = "<group>"; };
 		B44C221D25DF04E2002AF368 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B45D72A825EE9A5700CF8099 /* BibleApi */ = {isa = PBXFileReference; lastKnownFileType = text; path = BibleApi; sourceTree = "<group>"; };
+		B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		B4AA6BB525C5E92F00A9D800 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		B4E6645425A20D070087AC26 /* TextMemoriser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMemoriser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				B40B25A727A2AD9F00A037E9 /* QuestionFeedback.swift */,
+				B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				B4E664A125A379530087AC26 /* WordInVerse.swift in Sources */,
 				B413F3EE25DD27C5001D974C /* Bool.swift in Sources */,
 				B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */,
+				B4820A9627A2F6CF00D1F76D /* PracticeViewModel.swift in Sources */,
 				B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */,
 				B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */,
 				B40B25A827A2ADA000A037E9 /* QuestionFeedback.swift in Sources */,

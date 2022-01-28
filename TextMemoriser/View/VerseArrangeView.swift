@@ -13,30 +13,32 @@ struct VerseArrangeView: View {
     @State var verseBeingBuilt = ""
     @StateObject var questionFeedback = QuestionFeedback()
     @EnvironmentObject var vm: StateController
+    @ObservedObject var practiceVm: PracticeViewModel
     var wordGroupSize = 4
     
-    let nextQuestion: () -> Void
-    let passage: Passage
-    
     var body: some View {
-        Content(passage: passage, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $wordsToPick)
-            .onAppear(perform: {
-                wordsToPick = passage.getVerseChunks(size: wordGroupSize)
-            })
+        Content(passage: practiceVm.question.passage, check: checkAnswer, reset: reset, undo: undo, pickWord: pickWord, verseBeingBuilt: $verseBeingBuilt, wordsToPick: $wordsToPick)
+            .onAppear(perform: updateWordsToPick)
             .alert(isPresented: $questionFeedback.isShowing, content: {
-                Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) { nextQuestion() } )})
+                Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) { practiceVm.nextQuestion()
+                    updateWordsToPick()
+                } )})
         
+    }
+    
+    func updateWordsToPick() {
+        wordsToPick = practiceVm.question.passage.getVerseChunks(size: wordGroupSize)
     }
     
     
     func checkAnswer() {
-        if verseBeingBuilt == passage.text {
+        if verseBeingBuilt == practiceVm.question.passage.text {
             questionFeedback.alertTitle = "Correct"
             vm.score += 1
             questionFeedback.alertBody = ""
         } else {
             questionFeedback.alertTitle = "The correct answer is"
-            questionFeedback.alertBody = "\(vm.currentReference?.text ?? "")"
+            questionFeedback.alertBody = "\(practiceVm.question.passage.text)"
         }
         questionFeedback.isShowing = true
     }
@@ -44,7 +46,7 @@ struct VerseArrangeView: View {
     func reset() {
         verseBeingBuilt = ""
         wordsInVerse = []
-        wordsToPick = passage.getVerseChunks(size: wordGroupSize) 
+        wordsToPick = practiceVm.question.passage.getVerseChunks(size: wordGroupSize) 
     }
     
     func undo() {

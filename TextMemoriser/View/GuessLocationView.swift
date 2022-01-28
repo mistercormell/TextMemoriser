@@ -10,31 +10,29 @@ import SwiftUI
 struct GuessLocationView: View {
     @EnvironmentObject var vm: StateController
     @StateObject var questionFeedback = QuestionFeedback()
+    @ObservedObject var practiceVm: PracticeViewModel
     @State var chapter = 1
     @State var verse = 1
     @State var selectedBook = Book.Genesis
-    
-    let nextQuestion: () -> Void
-    let passage: Passage
         
     var body: some View {
         NavigationView {
-            Content(passage: passage, check: checkAnswer, bookChoice: $selectedBook, chapterChoice: $chapter, verseChoice: $verse)
+            Content(passage: practiceVm.question.passage, check: checkAnswer, bookChoice: $selectedBook, chapterChoice: $chapter, verseChoice: $verse)
                 
                 .navigationBarTitle("Guess the Location")
                 .alert(isPresented: $questionFeedback.isShowing, content: {
-                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) { nextQuestion() } )})
+                    Alert(title: Text("\(questionFeedback.alertTitle)"), message: Text("\(questionFeedback.alertBody)\n\nYour score is: \(vm.score)"), dismissButton: .default(Text("OK")) { practiceVm.nextQuestion() } )})
         }
     }
     
     func checkAnswer() {
-        if selectedBook == passage.location.book && chapter == passage.location.chapter && verse == passage.location.verse {
+        if selectedBook == practiceVm.question.passage.location.book && chapter == practiceVm.question.passage.location.chapter && verse == practiceVm.question.passage.location.verse {
             vm.score += 1
             questionFeedback.alertTitle = "Correct"
             questionFeedback.alertBody = "Keep on going!"
         } else {
             questionFeedback.alertTitle = "Not quite!"
-            questionFeedback.alertBody = "\(passage.location.display)"
+            questionFeedback.alertBody = "\(practiceVm.question.passage.location.display)"
         }
         questionFeedback.isShowing = true
     }
