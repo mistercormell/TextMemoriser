@@ -17,31 +17,45 @@ struct AddLearningGoalView: View {
     
     var body: some View {
         Form {
-            Picker(selection: $bookChoice, label: Text("Book"), content: {
-                ForEach(Book.allCases, id: \.self) {
-                    Text($0.displayName)
+            Section(header: Text("Add Single Verse")) {
+                Picker(selection: $bookChoice, label: Text("Book"), content: {
+                    ForEach(Book.allCases, id: \.self) {
+                        Text($0.displayName)
+                    }
+                })
+                Picker(selection: $chapterChoice, label: Text("Chapter"), content: {
+                    ForEach(0 ... 150, id: \.self) {
+                        Text("\($0)")
+                    }
+                })
+                Picker(selection: $verseChoice, label: Text("Verse"), content: {
+                    ForEach(0 ... 60, id: \.self) {
+                        Text("\($0)")
+                    }
+                })
+                Button(action: {
+                    let verseToLearn = VerseLocation(book: bookChoice, chapter: chapterChoice, verse: verseChoice)
+                    vm.addVerseToLearningSet(verseToLearn)
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Add Verse to Learning Set")
                 }
-            })
-            Picker(selection: $chapterChoice, label: Text("Chapter"), content: {
-                ForEach(0 ... 150, id: \.self) {
-                    Text("\($0)")
-                }
-            })
-            Picker(selection: $verseChoice, label: Text("Verse"), content: {
-                ForEach(0 ... 60, id: \.self) {
-                    Text("\($0)")
-                }
-            })
-            Button(action: {
-                let verseToLearn = VerseLocation(book: bookChoice, chapter: chapterChoice, verse: verseChoice)
-                vm.addVerseToLearningSet(verseToLearn)
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Add Verse to Learning Set")
             }
-            Section {
-                Button("Add curated verses to Learning Set", action: {
+            Section(header: Text("Add Verse Playlists")) {
+                Button("All-time Favourites", action: {
                     for verse in VerseLocation.curatedVerses() {
+                        vm.addVerseToLearningSet(verse)
+                    }
+                    self.presentationMode.wrappedValue.dismiss()
+                })
+                Button("Proclaiming Salvation ", action: {
+                    for verse in VerseLocation.proclaimingSalvation() {
+                        vm.addVerseToLearningSet(verse)
+                    }
+                    self.presentationMode.wrappedValue.dismiss()
+                })
+                Button("Becoming Christlike", action: {
+                    for verse in VerseLocation.becomingChristlike() {
                         vm.addVerseToLearningSet(verse)
                     }
                     self.presentationMode.wrappedValue.dismiss()
