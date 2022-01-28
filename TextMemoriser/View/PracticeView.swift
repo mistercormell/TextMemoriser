@@ -10,17 +10,35 @@ import SwiftUI
 struct PracticeView: View {
     @EnvironmentObject var viewModel: StateController
     @StateObject var practiceVm = PracticeViewModel()
+    @State private var questionCount: Int = 10
+    @State private var containGuessLocation: Bool = true
+    @State private var containVerseArrange: Bool = true
+    @State private var containGuessMissingWord: Bool = true
+    
+    var noQuestionTypesSelected: Bool {
+        if !containVerseArrange && !containGuessLocation && !containGuessMissingWord {
+            return true
+        } else {
+            return false
+        }
+    }
     
     var body: some View {
         if practiceVm.isEnd || practiceVm.questions.isEmpty {
-            HStack {
-                Button("Start Daily Challenge") {
-                    loadDailyChallenge()
+            VStack {
+                Form {
+                    Section() {
+                        Stepper("No. Questions: \(questionCount)", value: $questionCount, in: 5...50)
+                        Toggle("Guess the Reference", isOn: $containGuessLocation)
+                        Toggle("Re-Arrange the Verse", isOn: $containVerseArrange)
+                        Toggle("Guess the missing word", isOn: $containGuessMissingWord)
+                    }
+                    Button("Start Memorising") {
+                        launchCustomQuestionSet()
+                    }
+                    .disabled(noQuestionTypesSelected)
+                    .buttonStyle(BlueRoundedButton())
                 }
-                .padding()
-                .foregroundColor(Color.white)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
             }
         } else {
             let question = practiceVm.question
@@ -34,10 +52,20 @@ struct PracticeView: View {
         }
         
     }
-    
-    func loadDailyChallenge() {
+        
+    func launchCustomQuestionSet() {
         practiceVm.isEnd = false
-        practiceVm.questions = viewModel.constructQuestionSet(of: Question.missingWord)
+        var questionSet: [Question] = []
+        if containGuessLocation {
+            questionSet.append(Question.guessLocation)
+        }
+        if containVerseArrange {
+            questionSet.append(Question.arrangeVerse)
+        }
+        if containGuessMissingWord {
+            questionSet.append(Question.missingWord)
+        }
+        practiceVm.questions = viewModel.constructQuestionSet(of: questionSet, count: questionCount)
     }
 
 }

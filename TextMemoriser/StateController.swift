@@ -47,17 +47,13 @@ class StateController: ObservableObject {
         })
     }
     
-    func constructQuestionSet() -> [(passage: Passage, type: Question)] {
-        return constructQuestionSet(of: Question.allCases.randomElement()!)
-    }
-        
-    func constructQuestionSet(of questionType: Question) -> [(passage: Passage, type: Question)] {
+    func constructQuestionSet(of questionTypes: [Question], count: Int) -> [(passage: Passage, type: Question)] {
         var questionSet: [(passage: Passage, type: Question)] = []
         
         if self.passages.isEmpty.negation {
-            for _ in 1...10 {
+            for _ in 1...count {
                 let randomPassage = self.passages.randomElement()!
-                let randomQuestion = questionType
+                let randomQuestion = questionTypes.randomElement()!
                 questionSet.append((passage: randomPassage, type: randomQuestion))
             }
         }
