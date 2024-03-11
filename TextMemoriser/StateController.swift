@@ -68,9 +68,11 @@ class StateController: ObservableObject {
     }
         
     func addVerseToLearningSet(_ verseToAdd: VerseLocation) {
-        fetchReference(location: verseToAdd)
-        learningSet.append(verseToAdd)
-        currentReference = passages.randomElement()
+        if !learningSet.contains(verseToAdd) {
+            fetchReference(location: verseToAdd)
+            learningSet.append(verseToAdd)
+            currentReference = passages.randomElement()
+        }
     }
     
     func removeVerseFromLearningSet(atOffset indexSet: IndexSet) {
