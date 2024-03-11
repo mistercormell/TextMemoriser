@@ -16,15 +16,21 @@ class StateController: ObservableObject {
     }
     
     var progress: [VerseLocation:VerseMastery] = [:]
-    let adaptor = EsvBibleAdaptor()
+    let adaptor = BibleAdaptor()
     
+    @Published var translation: Translation = .esv {
+        didSet {
+            self.passages = []
+            self.fetchReferences()
+        }
+    }
     @Published var passages: [Passage] = []
     @Published var currentReference: Passage?
     @Published var score = 0
     @Published var questionType: Question = .guessLocation
 
     func fetchReference(location: VerseLocation) {
-        adaptor.fetchVerseWithReference(location: location, completion: { reference in
+        adaptor.fetchVerseWithReference(location: location, translation: translation, completion: { reference in
             DispatchQueue.main.async {
                 self.passages.append(reference)
             }
@@ -33,7 +39,7 @@ class StateController: ObservableObject {
     
     func fetchReferences() {
         for verse in learningSet {
-            adaptor.fetchVerseWithReference(location: verse, completion: { reference in
+            adaptor.fetchVerseWithReference(location: verse, translation: translation, completion: { reference in
                 DispatchQueue.main.async {
                     self.passages.append(reference)
                 }

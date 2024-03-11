@@ -25,6 +25,12 @@ struct RootTabView: View {
                     Text("Practice")
                 }
                 .tag(1)
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+                .tag(2)
 
         }
         .onAppear(perform: { vm.restoreUserSettings()

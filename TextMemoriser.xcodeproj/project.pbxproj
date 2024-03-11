@@ -20,6 +20,11 @@
 		B45D72A925EE9A5700CF8099 /* BibleApi in Resources */ = {isa = PBXBuildFile; fileRef = B45D72A825EE9A5700CF8099 /* BibleApi */; };
 		B4820A9627A2F6CF00D1F76D /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */; };
 		B4820A9827A40A8100D1F76D /* BlueRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4820A9727A40A8100D1F76D /* BlueRoundedButton.swift */; };
+		B490F1882B9F1A7000E99141 /* BibleGoAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F1872B9F1A7000E99141 /* BibleGoAdaptor.swift */; };
+		B490F18A2B9F294300E99141 /* BibleAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F1892B9F294300E99141 /* BibleAdaptor.swift */; };
+		B490F18C2B9F299600E99141 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F18B2B9F299600E99141 /* Translation.swift */; };
+		B490F18E2B9F2C4200E99141 /* BibleGoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F18D2B9F2C4200E99141 /* BibleGoResponse.swift */; };
+		B490F1902B9F2FF800E99141 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F18F2B9F2FF700E99141 /* SettingsView.swift */; };
 		B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BB525C5E92F00A9D800 /* LearnView.swift */; };
 		B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */; };
 		B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */; };
@@ -70,6 +75,11 @@
 		B45D72A825EE9A5700CF8099 /* BibleApi */ = {isa = PBXFileReference; lastKnownFileType = text; path = BibleApi; sourceTree = "<group>"; };
 		B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		B4820A9727A40A8100D1F76D /* BlueRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueRoundedButton.swift; sourceTree = "<group>"; };
+		B490F1872B9F1A7000E99141 /* BibleGoAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleGoAdaptor.swift; sourceTree = "<group>"; };
+		B490F1892B9F294300E99141 /* BibleAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleAdaptor.swift; sourceTree = "<group>"; };
+		B490F18B2B9F299600E99141 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		B490F18D2B9F2C4200E99141 /* BibleGoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleGoResponse.swift; sourceTree = "<group>"; };
+		B490F18F2B9F2FF700E99141 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B4AA6BB525C5E92F00A9D800 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		B4E6645425A20D070087AC26 /* TextMemoriser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMemoriser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +148,7 @@
 				B4E664C725AA05910087AC26 /* Passage.swift */,
 				B4E664DD25AA08EB0087AC26 /* Question.swift */,
 				B40B25A427A1B8E200A037E9 /* VerseMastery.swift */,
+				B490F18B2B9F299600E99141 /* Translation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,6 +167,7 @@
 				B413F3E525DC5016001D974C /* GuessMissingWordView.swift */,
 				B413F40125DD71E0001D974C /* FlowLayoutView.swift */,
 				B4820A9727A40A8100D1F76D /* BlueRoundedButton.swift */,
+				B490F18F2B9F2FF700E99141 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +177,9 @@
 			children = (
 				B4E664A825A71C600087AC26 /* EsvBibleAdaptor.swift */,
 				B4E664AD25A71F8D0087AC26 /* EsvBibleResponse.swift */,
+				B490F1872B9F1A7000E99141 /* BibleGoAdaptor.swift */,
+				B490F1892B9F294300E99141 /* BibleAdaptor.swift */,
+				B490F18D2B9F2C4200E99141 /* BibleGoResponse.swift */,
 			);
 			path = Web;
 			sourceTree = "<group>";
@@ -383,12 +398,15 @@
 			files = (
 				B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */,
 				B40B25A527A1B8E300A037E9 /* VerseMastery.swift in Sources */,
+				B490F18C2B9F299600E99141 /* Translation.swift in Sources */,
 				B4E664B325A723A10087AC26 /* StateController.swift in Sources */,
 				B4E664C325AA05520087AC26 /* VerseLocation.swift in Sources */,
 				B4E664A925A71C600087AC26 /* EsvBibleAdaptor.swift in Sources */,
 				B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */,
+				B490F18E2B9F2C4200E99141 /* BibleGoResponse.swift in Sources */,
 				B4E664D625AA08BB0087AC26 /* PracticeView.swift in Sources */,
 				B4E664DE25AA08EB0087AC26 /* Question.swift in Sources */,
+				B490F18A2B9F294300E99141 /* BibleAdaptor.swift in Sources */,
 				B4E664C825AA05910087AC26 /* Passage.swift in Sources */,
 				B4E6649325A20FB20087AC26 /* GuessLocationView.swift in Sources */,
 				B413F3E625DC5016001D974C /* GuessMissingWordView.swift in Sources */,
@@ -396,6 +414,7 @@
 				B413F3EE25DD27C5001D974C /* Bool.swift in Sources */,
 				B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */,
 				B4820A9627A2F6CF00D1F76D /* PracticeViewModel.swift in Sources */,
+				B490F1902B9F2FF800E99141 /* SettingsView.swift in Sources */,
 				B4820A9827A40A8100D1F76D /* BlueRoundedButton.swift in Sources */,
 				B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */,
 				B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */,
@@ -405,6 +424,7 @@
 				B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */,
 				B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */,
 				B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */,
+				B490F1882B9F1A7000E99141 /* BibleGoAdaptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
