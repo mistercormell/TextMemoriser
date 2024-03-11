@@ -30,12 +30,28 @@ struct AddLearningGoalView: View {
                         Text("\($0)")
                     }
                 })
+                if !versePickerViewModel.singleVerse {
+                    Picker(selection: $versePickerViewModel.verseEnd, label: Text("End Verse"), content: {
+                        ForEach(versePickerViewModel.verseChoice...versePickerViewModel.versesRange.upperBound, id: \.self) {
+                            Text("\($0)")
+                        }
+                    })
+                }
+                Toggle("Single Verse", isOn: $versePickerViewModel.singleVerse)
+
                 Button(action: {
-                    let verseToLearn = VerseLocation(book: versePickerViewModel.bookChoice, chapter: versePickerViewModel.chapterChoice, verse: versePickerViewModel.verseChoice)
-                    vm.addVerseToLearningSet(verseToLearn)
+                    if versePickerViewModel.singleVerse {
+                        let verseToLearn = VerseLocation(book: versePickerViewModel.bookChoice, chapter: versePickerViewModel.chapterChoice, verse: versePickerViewModel.verseChoice)
+                        vm.addVerseToLearningSet(verseToLearn)
+                    } else {
+                        for verse in versePickerViewModel.verseChoice ... versePickerViewModel.verseEnd {
+                            let verseToLearn = VerseLocation(book: versePickerViewModel.bookChoice, chapter: versePickerViewModel.chapterChoice, verse: verse)
+                            vm.addVerseToLearningSet(verseToLearn)
+                        }
+                    }
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("Add Verse to Learning Set")
+                    Text("Add Verse/s to Learning Set")
                 }
             }
             .onChange(of: versePickerViewModel.bookChoice) {

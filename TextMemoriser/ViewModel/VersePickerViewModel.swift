@@ -11,9 +11,11 @@ class VersePickerViewModel: ObservableObject {
     @Published var bookChoice: Book = Book.Genesis
     @Published var chapterChoice: Int = 1
     @Published var verseChoice: Int = 1
+    @Published var verseEnd: Int = 1
     
     @Published var chapterRange: ClosedRange<Int> = 1...50
     @Published var versesRange: ClosedRange<Int> = 1...31
+    @Published var singleVerse: Bool = true
     
     let bibleMetadata = BibleMetadata()
     
