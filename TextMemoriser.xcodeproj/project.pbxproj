@@ -13,7 +13,6 @@
 		B413F3EE25DD27C5001D974C /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F3ED25DD27C5001D974C /* Bool.swift */; };
 		B413F40225DD71E1001D974C /* FlowLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B413F40125DD71E0001D974C /* FlowLayoutView.swift */; };
 		B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D425D85EE00064A04D /* LearningSetView.swift */; };
-		B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D925D8674A0064A04D /* VersePickerView.swift */; };
 		B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478DE25D869610064A04D /* AddLearningGoalView.swift */; };
 		B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D624D25D977D400CD2C65 /* UserDocuments.swift */; };
 		B44C221E25DF04E2002AF368 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44C221D25DF04E2002AF368 /* GameKit.framework */; };
@@ -25,6 +24,8 @@
 		B490F18C2B9F299600E99141 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F18B2B9F299600E99141 /* Translation.swift */; };
 		B490F18E2B9F2C4200E99141 /* BibleGoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F18D2B9F2C4200E99141 /* BibleGoResponse.swift */; };
 		B490F1902B9F2FF800E99141 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F18F2B9F2FF700E99141 /* SettingsView.swift */; };
+		B490F1922B9FA98300E99141 /* VersePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F1912B9FA98300E99141 /* VersePickerViewModel.swift */; };
+		B490F1942B9FADCE00E99141 /* BibleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F1932B9FADCE00E99141 /* BibleMetadata.swift */; };
 		B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BB525C5E92F00A9D800 /* LearnView.swift */; };
 		B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */; };
 		B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */; };
@@ -68,7 +69,6 @@
 		B413F3ED25DD27C5001D974C /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
 		B413F40125DD71E0001D974C /* FlowLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayoutView.swift; sourceTree = "<group>"; };
 		B42478D425D85EE00064A04D /* LearningSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningSetView.swift; sourceTree = "<group>"; };
-		B42478D925D8674A0064A04D /* VersePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersePickerView.swift; sourceTree = "<group>"; };
 		B42478DE25D869610064A04D /* AddLearningGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLearningGoalView.swift; sourceTree = "<group>"; };
 		B43D624D25D977D400CD2C65 /* UserDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDocuments.swift; sourceTree = "<group>"; };
 		B44C221D25DF04E2002AF368 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -80,6 +80,8 @@
 		B490F18B2B9F299600E99141 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		B490F18D2B9F2C4200E99141 /* BibleGoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleGoResponse.swift; sourceTree = "<group>"; };
 		B490F18F2B9F2FF700E99141 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B490F1912B9FA98300E99141 /* VersePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersePickerViewModel.swift; sourceTree = "<group>"; };
+		B490F1932B9FADCE00E99141 /* BibleMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleMetadata.swift; sourceTree = "<group>"; };
 		B4AA6BB525C5E92F00A9D800 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		B4E6645425A20D070087AC26 /* TextMemoriser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMemoriser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 			children = (
 				B40B25A727A2AD9F00A037E9 /* QuestionFeedback.swift */,
 				B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */,
+				B490F1912B9FA98300E99141 /* VersePickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				B4E664DD25AA08EB0087AC26 /* Question.swift */,
 				B40B25A427A1B8E200A037E9 /* VerseMastery.swift */,
 				B490F18B2B9F299600E99141 /* Translation.swift */,
+				B490F1932B9FADCE00E99141 /* BibleMetadata.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,7 +163,6 @@
 				B4AA6BB525C5E92F00A9D800 /* LearnView.swift */,
 				B4E6649225A20FB10087AC26 /* GuessLocationView.swift */,
 				B42478DE25D869610064A04D /* AddLearningGoalView.swift */,
-				B42478D925D8674A0064A04D /* VersePickerView.swift */,
 				B4E6649725A3372F0087AC26 /* VerseArrangeView.swift */,
 				B4E664D525AA08BB0087AC26 /* PracticeView.swift */,
 				B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */,
@@ -416,15 +419,16 @@
 				B4820A9627A2F6CF00D1F76D /* PracticeViewModel.swift in Sources */,
 				B490F1902B9F2FF800E99141 /* SettingsView.swift in Sources */,
 				B4820A9827A40A8100D1F76D /* BlueRoundedButton.swift in Sources */,
+				B490F1922B9FA98300E99141 /* VersePickerViewModel.swift in Sources */,
 				B4E664AE25A71F8D0087AC26 /* EsvBibleResponse.swift in Sources */,
 				B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */,
 				B40B25A827A2ADA000A037E9 /* QuestionFeedback.swift in Sources */,
 				B4E6649825A3372F0087AC26 /* VerseArrangeView.swift in Sources */,
 				B413F40225DD71E1001D974C /* FlowLayoutView.swift in Sources */,
 				B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */,
-				B42478DA25D8674A0064A04D /* VersePickerView.swift in Sources */,
 				B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */,
 				B490F1882B9F1A7000E99141 /* BibleGoAdaptor.swift in Sources */,
+				B490F1942B9FADCE00E99141 /* BibleMetadata.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +591,7 @@
 				DEVELOPMENT_TEAM = L3SD6D89SC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TextMemoriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -611,7 +615,7 @@
 				DEVELOPMENT_TEAM = L3SD6D89SC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TextMemoriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

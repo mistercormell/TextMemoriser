@@ -10,35 +10,48 @@ import SwiftUI
 struct AddLearningGoalView: View {
     @EnvironmentObject var vm: StateController
     @Environment(\.presentationMode) var presentationMode
-
-    @State var bookChoice: Book = Book.Genesis
-    @State var chapterChoice: Int = 1
-    @State var verseChoice: Int = 1
+    @StateObject private var versePickerViewModel = VersePickerViewModel()
     
     var body: some View {
         Form {
             Section(header: Text("Add Single Verse")) {
-                Picker(selection: $bookChoice, label: Text("Book"), content: {
+                Picker(selection: $versePickerViewModel.bookChoice, label: Text("Book"), content: {
                     ForEach(Book.allCases, id: \.self) {
                         Text($0.displayName)
                     }
                 })
-                Picker(selection: $chapterChoice, label: Text("Chapter"), content: {
-                    ForEach(0 ... 150, id: \.self) {
+                Picker(selection: $versePickerViewModel.chapterChoice, label: Text("Chapter"), content: {
+                    ForEach(versePickerViewModel.chapterRange, id: \.self) {
                         Text("\($0)")
                     }
                 })
-                Picker(selection: $verseChoice, label: Text("Verse"), content: {
-                    ForEach(0 ... 60, id: \.self) {
+                Picker(selection: $versePickerViewModel.verseChoice, label: Text("Verse"), content: {
+                    ForEach(versePickerViewModel.versesRange, id: \.self) {
                         Text("\($0)")
                     }
                 })
                 Button(action: {
-                    let verseToLearn = VerseLocation(book: bookChoice, chapter: chapterChoice, verse: verseChoice)
+                    let verseToLearn = VerseLocation(book: versePickerViewModel.bookChoice, chapter: versePickerViewModel.chapterChoice, verse: versePickerViewModel.verseChoice)
                     vm.addVerseToLearningSet(verseToLearn)
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Add Verse to Learning Set")
+                }
+            }
+            .onChange(of: versePickerViewModel.bookChoice) {
+                versePickerViewModel.updateRangeOfChaptersInBookChoice()
+                if !versePickerViewModel.chapterRange.contains(versePickerViewModel.chapterChoice) {
+                    versePickerViewModel.chapterChoice = versePickerViewModel.chapterRange.first ?? 1
+                }
+                versePickerViewModel.updateRangeOfVersesInBookAndChapterChoice()
+                if !versePickerViewModel.versesRange.contains(versePickerViewModel.verseChoice) {
+                    versePickerViewModel.verseChoice = versePickerViewModel.versesRange.first ?? 1
+                }
+            }
+            .onChange(of: versePickerViewModel.chapterChoice) {
+                versePickerViewModel.updateRangeOfVersesInBookAndChapterChoice()
+                if !versePickerViewModel.versesRange.contains(versePickerViewModel.verseChoice) {
+                    versePickerViewModel.verseChoice = versePickerViewModel.versesRange.first ?? 1
                 }
             }
             Section(header: Text("Add Verse Playlists")) {
