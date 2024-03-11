@@ -584,7 +584,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TextMemoriser/Preview Content\"";
-				DEVELOPMENT_TEAM = 599QPW35GD;
+				DEVELOPMENT_TEAM = L3SD6D89SC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TextMemoriser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -593,7 +593,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mrcormell.TextMemoriser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mistercormell.TextMemoriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -608,7 +608,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TextMemoriser/Preview Content\"";
-				DEVELOPMENT_TEAM = 599QPW35GD;
+				DEVELOPMENT_TEAM = L3SD6D89SC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TextMemoriser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -617,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mrcormell.TextMemoriser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mistercormell.TextMemoriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
