@@ -32,7 +32,7 @@ struct AddLearningGoalView: View {
                 })
                 if !versePickerViewModel.singleVerse {
                     Picker(selection: $versePickerViewModel.verseEnd, label: Text("End Verse"), content: {
-                        ForEach(versePickerViewModel.verseChoice...versePickerViewModel.versesRange.upperBound, id: \.self) {
+                        ForEach(versePickerViewModel.endVerseRange, id: \.self) {
                             Text("\($0)")
                         }
                     })
@@ -59,15 +59,19 @@ struct AddLearningGoalView: View {
                 if !versePickerViewModel.chapterRange.contains(versePickerViewModel.chapterChoice) {
                     versePickerViewModel.chapterChoice = versePickerViewModel.chapterRange.first ?? 1
                 }
-                versePickerViewModel.updateRangeOfVersesInBookAndChapterChoice()
-                if !versePickerViewModel.versesRange.contains(versePickerViewModel.verseChoice) {
-                    versePickerViewModel.verseChoice = versePickerViewModel.versesRange.first ?? 1
-                }
+                updateVerseRanges()
             }
             .onChange(of: versePickerViewModel.chapterChoice) {
-                versePickerViewModel.updateRangeOfVersesInBookAndChapterChoice()
-                if !versePickerViewModel.versesRange.contains(versePickerViewModel.verseChoice) {
-                    versePickerViewModel.verseChoice = versePickerViewModel.versesRange.first ?? 1
+                updateVerseRanges()
+            }
+            .onChange(of: versePickerViewModel.verseChoice) {
+                if versePickerViewModel.verseChoice > versePickerViewModel.verseEnd {
+                    versePickerViewModel.verseEnd = versePickerViewModel.verseChoice
+                }
+            }
+            .onChange(of: versePickerViewModel.verseEnd) {
+                if versePickerViewModel.verseEnd < versePickerViewModel.verseChoice {
+                    versePickerViewModel.verseChoice = versePickerViewModel.verseEnd
                 }
             }
             Section(header: Text("Add Verse Playlists")) {
@@ -92,6 +96,17 @@ struct AddLearningGoalView: View {
             }
         }
         
+    }
+    
+    func updateVerseRanges() {
+        versePickerViewModel.updateRangeOfVersesInBookAndChapterChoice()
+        if !versePickerViewModel.versesRange.contains(versePickerViewModel.verseChoice) {
+            versePickerViewModel.verseChoice = versePickerViewModel.versesRange.first ?? 1
+        }
+        versePickerViewModel.updateRangeOfEndVersesInBookAndChapterChoice()
+        if !versePickerViewModel.endVerseRange.contains(versePickerViewModel.verseEnd) {
+            versePickerViewModel.verseEnd = versePickerViewModel.endVerseRange.upperBound
+        }
     }
 }
 

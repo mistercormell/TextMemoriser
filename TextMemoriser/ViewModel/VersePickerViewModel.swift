@@ -15,6 +15,7 @@ class VersePickerViewModel: ObservableObject {
     
     @Published var chapterRange: ClosedRange<Int> = 1...50
     @Published var versesRange: ClosedRange<Int> = 1...31
+    @Published var endVerseRange: ClosedRange<Int> = 1...31
     @Published var singleVerse: Bool = true
     
     let bibleMetadata = BibleMetadata()
@@ -25,5 +26,9 @@ class VersePickerViewModel: ObservableObject {
     
     func updateRangeOfVersesInBookAndChapterChoice() {
         versesRange = 1...bibleMetadata.numberOfVerses(in: bookChoice, chapter: chapterChoice)
+    }
+    
+    func updateRangeOfEndVersesInBookAndChapterChoice() {
+        endVerseRange = verseChoice...versesRange.upperBound
     }
 }
