@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct LearnView: View {
     @EnvironmentObject var vm: StateController
@@ -14,7 +15,7 @@ struct LearnView: View {
     var body: some View {
         NavigationView {
             if let currentReference = vm.currentReference {
-                Content(passageText: currentReference.text, passageLocation: currentReference.displayLocationWithCopyright, passageTextOpacity: 1.0)
+                Content(passageText: currentReference.text, passageLocation: currentReference.location.display, passageLocationWithCopyright: currentReference.displayLocationWithCopyright, passageTextOpacity: 1.0)
             } else {
                 ProgressView("Loading verses...")
             }
@@ -27,12 +28,18 @@ extension LearnView {
     struct Content: View {
         let passageText: String
         let passageLocation: String
+        let passageLocationWithCopyright: String
         @State var passageTextOpacity = 1.0
+        @State private var speechSynthesizer = AVSpeechSynthesizer()
         
         var body: some View {
             VStack {
                 Button(action: {
-                    BibleDictation().playVerseAndLocation(verse: passageText, location: passageLocation)
+                    let utterance = AVSpeechUtterance(string: "\(passageText):\(passageLocation)")
+                    utterance.rate = 0.4
+                    utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+                    
+                    speechSynthesizer.speak(utterance)
                 }, label: {
                     Image(systemName: "speaker")
                         .font(.largeTitle)
@@ -50,7 +57,7 @@ extension LearnView {
                     }
                 HStack {
                     Spacer()
-                    Text(passageLocation)
+                    Text(passageLocationWithCopyright)
                         .bold()
                         .padding()
                 }
@@ -64,7 +71,7 @@ extension LearnView {
 struct LearnView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LearnView.Content(passageText: Passage.example.text, passageLocation: Passage.example.displayLocationWithCopyright, passageTextOpacity: 1.0)
+            LearnView.Content(passageText: Passage.example.text, passageLocation: Passage.example.location.display, passageLocationWithCopyright: Passage.example.displayLocationWithCopyright, passageTextOpacity: 1.0)
         }
     }
 }

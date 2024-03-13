@@ -9,7 +9,7 @@ import Foundation
 import AVFoundation
 
 class BibleDictation {
-    let speechSynthesizer = AVSpeechSynthesizer()
+    private var speechSynthesizer = AVSpeechSynthesizer()
     
     func playVerseAndLocation(verse: String, location: String) {
         let utterance = AVSpeechUtterance(string: getVerseAndLocation(verse, location))
