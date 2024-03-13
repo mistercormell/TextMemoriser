@@ -31,6 +31,13 @@ extension LearnView {
         
         var body: some View {
             VStack {
+                Button(action: {
+                    BibleDictation().playVerseAndLocation(verse: passageText, location: passageLocation)
+                }, label: {
+                    Image(systemName: "speaker")
+                        .font(.largeTitle)
+                        .padding()
+                })
                 Text(passageText)
                     .padding()
                     .opacity(passageTextOpacity)
