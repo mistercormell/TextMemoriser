@@ -16,10 +16,6 @@ struct Passage: Equatable {
         "\(location.display) (\(copyright))"
     }
     
-    var wordsInVerse: [WordInVerse] {
-        return getVerseChunks(size: 1)
-    }
-    
     func getVerseChunks(size: Int) -> [WordInVerse] {
         let words = text.components(separatedBy: " ")
         var wordsInVerses = [WordInVerse]()
@@ -34,6 +30,31 @@ struct Passage: Equatable {
         
         for (index, chunk) in chunks.enumerated() {
             wordsInVerses.append(WordInVerse(id: index, word: chunk))
+        }
+        
+        return wordsInVerses.shuffled()
+    }
+    
+    func getVerseChunks(numberOfChunks: Int? = nil) -> [WordInVerse] {
+        let words = text.components(separatedBy: " ")
+        var wordsInVerses = [WordInVerse]()
+        
+        // If numberOfChunks is nil, make each word its own chunk
+        let chunksCount = numberOfChunks ?? words.count
+        guard chunksCount > 0 else { return [] }
+        
+        let baseChunkSize = words.count / chunksCount
+        let remainder = words.count % chunksCount
+        
+        var start = 0
+        for index in 0..<chunksCount {
+            let currentChunkSize = baseChunkSize + (index < remainder ? 1 : 0)
+            let end = start + currentChunkSize
+            if start < words.count {
+                let chunk = words[start..<Swift.min(end, words.count)].joined(separator: " ")
+                wordsInVerses.append(WordInVerse(id: index, word: chunk))
+            }
+            start = end
         }
         
         return wordsInVerses.shuffled()

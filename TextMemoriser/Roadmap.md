@@ -8,7 +8,7 @@ Tasks:
 1. Add Dictation to Learn a verse view - DONE
 2. Tweak Guess the Location view to have 3 modes - DONE
 3. Make Lesson mode to take them through all the questions in order (without unfinished modes) - DONE
-4. Build the verse mode added and included in lesson mode
+4. Build the verse mode added and included in lesson mode - DONE
 5. Fill in the blank mode with dictation added and included in lesson mode
 6. Strength metric captured and displayed simply as colour on learning set view
 7. Practice mode revamped to use new question types and strength metric
