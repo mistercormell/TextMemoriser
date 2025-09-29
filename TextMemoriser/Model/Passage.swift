@@ -69,6 +69,36 @@ struct Passage: Equatable {
         return (blankedText, missingWord)
     }
     
+    func getTextWithMissingWords(percentToBlank: Double) -> (blankedText: String, missingWords: [String]) {
+        // Split the text into words and keep track of original separators
+        var words = text.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+        var missingWords: [String] = []
+
+        // Determine how many words to blank out
+        let numToBlank = max(1, Int(Double(words.count) * percentToBlank))
+        
+        // Randomly select unique indices to blank
+        var indicesToBlank = Set<Int>()
+        while indicesToBlank.count < numToBlank {
+            indicesToBlank.insert(Int.random(in: 0..<words.count))
+        }
+        
+        // Replace the selected words with underscores
+        for index in indicesToBlank {
+            let word = words[index]
+            let lettersOnly = word.filter { $0.isLetter } // Only mask letters
+            if !lettersOnly.isEmpty {
+                missingWords.append(lettersOnly)
+                let masked = String(repeating: "_", count: lettersOnly.count)
+                // Replace only the letters, keeping punctuation intact
+                words[index] = word.replacingOccurrences(of: lettersOnly, with: masked)
+            }
+        }
+        
+        let blankedText = words.joined(separator: " ")
+        return (blankedText, missingWords)
+    }
+    
     static func == (lhs: Passage, rhs: Passage) -> Bool {
         return lhs.text == rhs.text ? true : false
     }

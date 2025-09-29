@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MemoriseView: View {
-    let questionLimit = 6
+    let questionLimit = 9
     let passage: Passage
     @State private var question: Int = 1
     @Binding var isMemorising: Bool
@@ -25,14 +25,20 @@ struct MemoriseView: View {
                 case 1:
                     GuessLocationView2(passage: passage, questionType: .bookOnly, question: $question)
                 case 2:
-                    ArrangeTheVerseView(question: $question, chunks: 5, passage: passage)
+                    FillInTheBlanksView(passage: passage, percentageBlank: 0.1, question: $question)
                 case 3:
-                    GuessLocationView2(passage: passage, questionType: .bookAndChapter, question: $question)
+                    ArrangeTheVerseView(question: $question, chunks: 5, passage: passage)
                 case 4:
-                    ArrangeTheVerseView(question: $question, chunks: 8, passage: passage)
+                    GuessLocationView2(passage: passage, questionType: .bookAndChapter, question: $question)
                 case 5:
-                    GuessLocationView2(passage: passage, questionType: .bookAndChapterAndVerse, question: $question)
+                    FillInTheBlanksView(passage: passage, percentageBlank: 0.2, question: $question)
                 case 6:
+                    ArrangeTheVerseView(question: $question, chunks: 8, passage: passage)
+                case 7:
+                    GuessLocationView2(passage: passage, questionType: .bookAndChapterAndVerse, question: $question)
+                case 8:
+                    FillInTheBlanksView(passage: passage, percentageBlank: 0.35, question: $question)
+                case 9:
                     ArrangeTheVerseView(wordsToPick: passage.getVerseChunks(), question: $question, chunks: nil, passage: passage)
                 default:
                     Text("Verse Memorised!")

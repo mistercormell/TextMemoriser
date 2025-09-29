@@ -90,6 +90,7 @@ extension ArrangeTheVerseView {
             NavigationView {
                 VStack {
                     Text(verseBeingBuilt)
+                        .padding()
                     Spacer()
                     Divider()
                     FlowLayoutView(mode: .vstack, binding: .constant(8), items: wordsToPick, viewMapping: { word in
