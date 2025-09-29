@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LearningSetView: View {
     @EnvironmentObject var stateController: StateController
+    @Environment(MemorisationProgress.self) private var progress: MemorisationProgress
     @State var showingAdd: Bool = false
     
     var body: some View {
@@ -20,8 +21,23 @@ struct LearningSetView: View {
                 } else {
                     List {
                         ForEach(stateController.learningSet) { location in
-                            NavigationLink(location.display) {
+                            let mastery = progress.getMasteryScore(for: location)
+                            NavigationLink {
                                 LearnView(selectedVerse: location)
+                            } label: {
+                                HStack {
+                                    Circle()
+                                        .fill(
+                                            Color(
+                                                hue: scoreToHue(mastery),
+                                                saturation: 0.8,
+                                                brightness: 0.9
+                                            )
+                                        )
+                                        .frame(width: 16, height: 16)
+
+                                    Text(location.display)
+                                }
                             }
                         }
                         .onDelete(perform: { indexSet in
@@ -45,6 +61,20 @@ struct LearningSetView: View {
                     .navigationBarTitleDisplayMode(.inline)
             }
         })
+    }
+    
+    private func scoreToHue(_ score: Double) -> Double {
+        let clamped = max(0, min(100, score))
+        
+        if clamped < 80 {
+            // 0 → 80 maps to red → orange
+            // Hue: red (0.0) → orange (approx 0.08)
+            return (clamped / 80) * 0.08
+        } else {
+            // 80 → 100 maps to orange → green
+            // Hue: orange (0.08) → green (0.33)
+            return 0.08 + ((clamped - 80) / 20) * (0.33 - 0.08)
+        }
     }
 }
 

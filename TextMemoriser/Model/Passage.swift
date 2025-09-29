@@ -83,8 +83,11 @@ struct Passage: Equatable {
             indicesToBlank.insert(Int.random(in: 0..<words.count))
         }
         
+        // Sort the indices to preserve the original order
+        let sortedIndices = indicesToBlank.sorted()
+        
         // Replace the selected words with underscores
-        for index in indicesToBlank {
+        for index in sortedIndices {
             let word = words[index]
             let lettersOnly = word.filter { $0.isLetter } // Only mask letters
             if !lettersOnly.isEmpty {

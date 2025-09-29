@@ -13,6 +13,7 @@ struct TextMemoriserApp: App {
         WindowGroup {
             RootTabView()
                 .environmentObject(StateController())
+                .environment(MemorisationProgress())
         }
     }
 }

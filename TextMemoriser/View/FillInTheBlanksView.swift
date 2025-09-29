@@ -16,6 +16,9 @@ struct FillInTheBlanksView: View {
     @State var userEnteredMissingWords: [String] = []
     
     @StateObject var questionFeedback = QuestionFeedback()
+    
+    @Environment(MemorisationProgress.self) var memorisationProgress: MemorisationProgress
+    
     @Binding var question: Int
     
     var body: some View {
@@ -34,9 +37,11 @@ struct FillInTheBlanksView: View {
                 if missingWords.elementsEqual(userEnteredMissingWords, by: { $0.lowercased() == $1.lowercased() }) {
                     questionFeedback.alertTitle = "Correct"
                     questionFeedback.alertBody = ""
+                    memorisationProgress.correctAnswer(verse: passage.location)
                 } else {
                     questionFeedback.alertTitle = "The correct words were"
                     questionFeedback.alertBody = "\(missingWords.joined(separator: ", "))"
+                    memorisationProgress.incorrectAnswer(verse: passage.location)
                 }
                 
                 questionFeedback.isShowing = true
@@ -56,4 +61,5 @@ struct FillInTheBlanksView: View {
 
 #Preview {
     FillInTheBlanksView(passage: Passage.example, percentageBlank: 0.1, question: .constant(1))
+        .environment(MemorisationProgress())
 }

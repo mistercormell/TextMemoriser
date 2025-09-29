@@ -15,6 +15,8 @@ struct ArrangeTheVerseView: View {
     @Binding var question: Int
     let chunks: Int?
     
+    @Environment(MemorisationProgress.self) var memorisationProgress: MemorisationProgress
+    
     let passage: Passage
     
     var body: some View {
@@ -36,9 +38,11 @@ struct ArrangeTheVerseView: View {
         if verseBeingBuilt == passage.text {
             questionFeedback.alertTitle = "Correct"
             questionFeedback.alertBody = ""
+            memorisationProgress.correctAnswer(verse: passage.location)
         } else {
             questionFeedback.alertTitle = "The correct answer is"
             questionFeedback.alertBody = "\(passage.text)"
+            memorisationProgress.incorrectAnswer(verse: passage.location)
         }
         questionFeedback.isShowing = true
     }
@@ -123,4 +127,5 @@ extension ArrangeTheVerseView {
 
 #Preview {
     ArrangeTheVerseView(question: .constant(1), chunks: 4, passage: Passage.example)
+        .environment(MemorisationProgress())
 }

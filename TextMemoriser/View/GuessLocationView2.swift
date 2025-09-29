@@ -24,6 +24,7 @@ struct GuessLocationView2: View {
     @Binding var question: Int
     
     @StateObject var questionFeedback = QuestionFeedback()
+    @Environment(MemorisationProgress.self) var memorisationProgress: MemorisationProgress
     
     var body: some View {
         VStack {
@@ -59,6 +60,11 @@ struct GuessLocationView2: View {
                 } else {
                     result = passage.location.book == selectedBook && passage.location.chapter == chapter && passage.location.verse == verse ? "Correct" : "The correct reference was: \(passage.location.display)"
                 }
+                if result == "Correct" {
+                    memorisationProgress.correctAnswer(verse: passage.location)
+                } else {
+                    memorisationProgress.incorrectAnswer(verse: passage.location)
+                }
                 questionFeedback.alertBody = result
                 questionFeedback.isShowing = true
             })
@@ -71,4 +77,5 @@ struct GuessLocationView2: View {
 
 #Preview {
     GuessLocationView2(passage: Passage.example, questionType: .bookAndChapterAndVerse, question: .constant(1))
+        .environment(MemorisationProgress())
 }
