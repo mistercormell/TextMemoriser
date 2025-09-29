@@ -15,6 +15,8 @@
 		B42478D525D85EE00064A04D /* LearningSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478D425D85EE00064A04D /* LearningSetView.swift */; };
 		B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42478DE25D869610064A04D /* AddLearningGoalView.swift */; };
 		B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D624D25D977D400CD2C65 /* UserDocuments.swift */; };
+		B44ACC4A2E8A8FD500EAC45E /* MemoriseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44ACC492E8A8FD500EAC45E /* MemoriseView.swift */; };
+		B44ACC4C2E8A9BB300EAC45E /* GuessLocationView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44ACC4B2E8A9BB300EAC45E /* GuessLocationView2.swift */; };
 		B44C221E25DF04E2002AF368 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44C221D25DF04E2002AF368 /* GameKit.framework */; };
 		B45D72A925EE9A5700CF8099 /* BibleApi in Resources */ = {isa = PBXBuildFile; fileRef = B45D72A825EE9A5700CF8099 /* BibleApi */; };
 		B4820A9627A2F6CF00D1F76D /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */; };
@@ -72,6 +74,8 @@
 		B42478D425D85EE00064A04D /* LearningSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningSetView.swift; sourceTree = "<group>"; };
 		B42478DE25D869610064A04D /* AddLearningGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLearningGoalView.swift; sourceTree = "<group>"; };
 		B43D624D25D977D400CD2C65 /* UserDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDocuments.swift; sourceTree = "<group>"; };
+		B44ACC492E8A8FD500EAC45E /* MemoriseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriseView.swift; sourceTree = "<group>"; };
+		B44ACC4B2E8A9BB300EAC45E /* GuessLocationView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessLocationView2.swift; sourceTree = "<group>"; };
 		B44C221D25DF04E2002AF368 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B45D72A825EE9A5700CF8099 /* BibleApi */ = {isa = PBXFileReference; lastKnownFileType = text; path = BibleApi; sourceTree = "<group>"; };
 		B4820A9527A2F6CF00D1F76D /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				B413F40125DD71E0001D974C /* FlowLayoutView.swift */,
 				B4820A9727A40A8100D1F76D /* BlueRoundedButton.swift */,
 				B490F18F2B9F2FF700E99141 /* SettingsView.swift */,
+				B44ACC492E8A8FD500EAC45E /* MemoriseView.swift */,
+				B44ACC4B2E8A9BB300EAC45E /* GuessLocationView2.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -411,8 +417,10 @@
 				B4E664C325AA05520087AC26 /* VerseLocation.swift in Sources */,
 				B4E664A925A71C600087AC26 /* EsvBibleAdaptor.swift in Sources */,
 				B42478DF25D869610064A04D /* AddLearningGoalView.swift in Sources */,
+				B44ACC4C2E8A9BB300EAC45E /* GuessLocationView2.swift in Sources */,
 				B490F18E2B9F2C4200E99141 /* BibleGoResponse.swift in Sources */,
 				B4E664D625AA08BB0087AC26 /* PracticeView.swift in Sources */,
+				B44ACC4A2E8A8FD500EAC45E /* MemoriseView.swift in Sources */,
 				B4E664DE25AA08EB0087AC26 /* Question.swift in Sources */,
 				B490F18A2B9F294300E99141 /* BibleAdaptor.swift in Sources */,
 				B4E664C825AA05910087AC26 /* Passage.swift in Sources */,

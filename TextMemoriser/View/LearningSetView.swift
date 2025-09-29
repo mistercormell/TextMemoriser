@@ -12,7 +12,7 @@ struct LearningSetView: View {
     @State var showingAdd: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if stateController.learningSet.count == 0 {
                     Text("No verses in learning set. Add some verses using the Add button")
@@ -39,7 +39,7 @@ struct LearningSetView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $showingAdd, content: {
-            NavigationView {
+            NavigationStack {
                 AddLearningGoalView()
                     .navigationBarTitle("Add Verse")
                     .navigationBarTitleDisplayMode(.inline)

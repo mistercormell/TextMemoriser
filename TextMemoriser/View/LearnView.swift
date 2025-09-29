@@ -12,10 +12,11 @@ struct LearnView: View {
     @EnvironmentObject var vm: StateController
     var selectedVerse: VerseLocation
     
+    
     var body: some View {
-        NavigationView {
+        Group {
             if let currentReference = vm.currentReference {
-                Content(passageText: currentReference.text, passageLocation: currentReference.location.display, passageLocationWithCopyright: currentReference.displayLocationWithCopyright, passageTextOpacity: 1.0)
+                Content(passageText: currentReference.text, passageLocation: currentReference.location.display, passageLocationWithCopyright: currentReference.displayLocationWithCopyright, passage: currentReference, passageTextOpacity: 1.0)
             } else {
                 ProgressView("Loading verses...")
             }
@@ -29,8 +30,10 @@ extension LearnView {
         let passageText: String
         let passageLocation: String
         let passageLocationWithCopyright: String
+        let passage: Passage
         @State var passageTextOpacity = 1.0
         @State private var speechSynthesizer = AVSpeechSynthesizer()
+        @State private var isMemorising = false
         
         var body: some View {
             VStack {
@@ -41,7 +44,7 @@ extension LearnView {
                     
                     speechSynthesizer.speak(utterance)
                 }, label: {
-                    Image(systemName: "speaker")
+                    Image(systemName: "speaker.2")
                         .font(.largeTitle)
                         .padding()
                 })
@@ -62,16 +65,25 @@ extension LearnView {
                         .padding()
                 }
                 Spacer()
-
+                Button("Memorise this verse") {
+                    isMemorising = true
+                }
+                .buttonStyle(.borderedProminent)
+                .padding()
+                Spacer()
+            }
+            .fullScreenCover(isPresented: $isMemorising) {
+                MemoriseView(passage: passage, isMemorising: $isMemorising)
             }
         }
+
     }
 }
 
 struct LearnView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            LearnView.Content(passageText: Passage.example.text, passageLocation: Passage.example.location.display, passageLocationWithCopyright: Passage.example.displayLocationWithCopyright, passageTextOpacity: 1.0)
+        NavigationStack {
+            LearnView.Content(passageText: Passage.example.text, passageLocation: Passage.example.location.display, passageLocationWithCopyright: Passage.example.displayLocationWithCopyright, passage: Passage.example, passageTextOpacity: 1.0)
         }
     }
 }

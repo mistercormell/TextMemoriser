@@ -5,14 +5,15 @@
 ## Overview
 
 Tasks:
-1. Add Dictation to Learn a verse view 
-2. Tweak Guess the Location view to have 3 modes
-3. Make Lesson mode to take them through all the questions in order (without unfinished modes)
+1. Add Dictation to Learn a verse view - DONE
+2. Tweak Guess the Location view to have 3 modes - DONE
+3. Make Lesson mode to take them through all the questions in order (without unfinished modes) - DONE
 4. Build the verse mode added and included in lesson mode
 5. Fill in the blank mode with dictation added and included in lesson mode
 6. Strength metric captured and displayed simply as colour on learning set view
 7. Practice mode revamped to use new question types and strength metric
 8. Custom timed notifications
+*** REFACTOR AND CODE IMPROVEMENTS ***
 9. Fancy UI enhancements to question types (e.g. strengths progress bar)
 
 ###Learning / Practice Mode
@@ -33,7 +34,7 @@ For any given verse there are stages of learning:
 - Given a verse's location: I can tell you the verse 
 
 Types of activity:
-- Select the location (book, book+chapter, book+verse)
+- Select the location (book, book+chapter, book+chapter+verse)
 - Fill in the blank (varying number of blanks) - dictated response
 - Re-arrange the verse (verse chunked up into varying size blocks)
 - Build the verse (only 4/5 options for the next word in the verse are shown until the whole verse is built)
