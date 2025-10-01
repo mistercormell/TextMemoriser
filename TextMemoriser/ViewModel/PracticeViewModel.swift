@@ -6,23 +6,20 @@
 //
 
 import Foundation
+import SwiftUI
 
-class PracticeViewModel: ObservableObject {
-    @Published var questions: [(passage: Passage, type: Question)] = []
-    @Published var current: Int = 0
-    @Published var isEnd: Bool = false
+@Observable
+class PracticeViewModel {
+    var questions: [(passage: Passage, type: Question)] = []
+    var current: Int = 0
     
-    var question: (passage: Passage, type: Question) {
-        questions[current]
-    }
-    
-    func nextQuestion() {
-        var nextIndex = current + 1
-        if !questions.indices.contains(nextIndex) {
-            isEnd = true
-            current = 0
+    func getQuestion() -> (passage: Passage, type: Question)? {
+        if questions.isEmpty || current >= questions.count {
+            return nil
         } else {
-            current = nextIndex
+            return questions[current]
         }
     }
+    
+
 }

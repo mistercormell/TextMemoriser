@@ -10,9 +10,11 @@ import SwiftUI
 struct ArrangeTheVerseView: View {
     @State var wordsInVerse = [WordInVerse]()
     @State var wordsToPick = [WordInVerse]()
+    @State var normalizedText = ""
     @State var verseBeingBuilt = ""
     @StateObject var questionFeedback = QuestionFeedback()
     @Binding var question: Int
+    @Binding var confettiTrigger: Int
     let chunks: Int?
     
     @Environment(MemorisationProgress.self) var memorisationProgress: MemorisationProgress
@@ -30,27 +32,33 @@ struct ArrangeTheVerseView: View {
     }
     
     func updateWordsToPick() {
-        wordsToPick = passage.getVerseChunks(numberOfChunks: chunks)
+        let verseChunks = passage.getVerseChunks(numberOfChunks: chunks)
+        wordsToPick = verseChunks.0
+        normalizedText = verseChunks.1
+        
     }
     
     
     func checkAnswer() {
-        if verseBeingBuilt == passage.text {
-            questionFeedback.alertTitle = "Correct"
-            questionFeedback.alertBody = ""
+        if verseBeingBuilt == normalizedText {
             memorisationProgress.correctAnswer(verse: passage.location)
+            confettiTrigger += 1
+            question += 1
         } else {
-            questionFeedback.alertTitle = "The correct answer is"
-            questionFeedback.alertBody = "\(passage.text)"
+            questionFeedback.alertTitle = "Incorrect"
+            questionFeedback.alertBody = "The correct verse is: \(passage.text)"
             memorisationProgress.incorrectAnswer(verse: passage.location)
+            questionFeedback.isShowing = true
         }
-        questionFeedback.isShowing = true
+        
     }
     
     func reset() {
         verseBeingBuilt = ""
         wordsInVerse = []
-        wordsToPick = passage.getVerseChunks(numberOfChunks: chunks)
+        let verseChunks = passage.getVerseChunks(numberOfChunks: chunks)
+        wordsToPick = verseChunks.0
+        normalizedText = verseChunks.1
     }
     
     func undo() {
@@ -91,8 +99,10 @@ extension ArrangeTheVerseView {
         @Binding var wordsToPick: [WordInVerse]
         
         var body: some View {
-            NavigationView {
                 VStack {
+                    Text("\(passage.displayLocationWithCopyright)")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
                     Text(verseBeingBuilt)
                         .padding()
                     Spacer()
@@ -117,8 +127,6 @@ extension ArrangeTheVerseView {
                             .padding()
                     }
                 }
-                .navigationBarTitle("\(passage.displayLocationWithCopyright)")
-            }
         }
         
         
@@ -126,6 +134,6 @@ extension ArrangeTheVerseView {
 }
 
 #Preview {
-    ArrangeTheVerseView(question: .constant(1), chunks: 4, passage: Passage.example)
+    ArrangeTheVerseView(question: .constant(1), confettiTrigger: .constant(1), chunks: 4, passage: Passage.example)
         .environment(MemorisationProgress())
 }

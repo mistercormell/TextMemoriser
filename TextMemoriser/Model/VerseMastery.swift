@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VerseMastery {
+struct VerseMastery: Codable {
     var attempts: Int
     var correct: Int
     var lastStudied: Date

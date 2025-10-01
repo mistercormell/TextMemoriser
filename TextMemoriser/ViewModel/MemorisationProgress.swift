@@ -12,12 +12,17 @@ import SwiftUI
 class MemorisationProgress {
     var progress: [VerseLocation:VerseMastery] = [:]
     
+    init() {
+        load()
+    }
+    
     func correctAnswer(verse: VerseLocation) {
         if let existingProgress = progress[verse] {
             progress[verse] = VerseMastery(attempts: existingProgress.attempts + 1, correct: existingProgress.correct + 1, lastStudied: Date.now)
         } else {
             progress[verse] = VerseMastery(attempts: 1, correct: 1, lastStudied: Date.now)
         }
+        save()
     }
     
     func incorrectAnswer(verse: VerseLocation) {
@@ -26,6 +31,7 @@ class MemorisationProgress {
         } else {
             progress[verse] = VerseMastery(attempts: 1, correct: 0, lastStudied: Date.now)
         }
+        save()
     }
     
     func getMasteryScore(for verse: VerseLocation) -> Double {
@@ -43,13 +49,15 @@ class MemorisationProgress {
             $0.key
         })
     }
-    
+            
     //todo persistence
     func save() {
-        
+        FileManager.default.save(to: "progress.json", object: progress)
     }
     
     func load() {
-        
+        if let loadedMemorisationProgress: [VerseLocation:VerseMastery] = FileManager.default.load(from: "progress.json") {
+            progress = loadedMemorisationProgress
+        }
     }
 }

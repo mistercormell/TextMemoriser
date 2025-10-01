@@ -35,13 +35,19 @@ struct Passage: Equatable {
         return wordsInVerses.shuffled()
     }
     
-    func getVerseChunks(numberOfChunks: Int? = nil) -> [WordInVerse] {
-        let words = text.components(separatedBy: " ")
+    func getVerseChunks(numberOfChunks: Int? = nil) -> ([WordInVerse],String) {
+        let normalizedText = text.replacingOccurrences(
+            of: "\\s+",
+            with: " ",
+            options: .regularExpression
+        ).trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let words = normalizedText.components(separatedBy: " ")
         var wordsInVerses = [WordInVerse]()
         
         // If numberOfChunks is nil, make each word its own chunk
         let chunksCount = numberOfChunks ?? words.count
-        guard chunksCount > 0 else { return [] }
+        guard chunksCount > 0 else { return ([],"") }
         
         let baseChunkSize = words.count / chunksCount
         let remainder = words.count % chunksCount
@@ -57,7 +63,7 @@ struct Passage: Equatable {
             start = end
         }
         
-        return wordsInVerses.shuffled()
+        return (wordsInVerses.shuffled(),normalizedText)
     }
     
     func getTextWithMissingWord() -> (blankedText: String, missingWord: String) {
@@ -70,8 +76,15 @@ struct Passage: Equatable {
     }
     
     func getTextWithMissingWords(percentToBlank: Double) -> (blankedText: String, missingWords: [String]) {
-        // Split the text into words and keep track of original separators
-        var words = text.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+        // Collapse multiple whitespace/newlines into a single space
+        let normalizedText = text.replacingOccurrences(
+            of: "\\s+",
+            with: " ",
+            options: .regularExpression
+        ).trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Split into words
+        var words = normalizedText.components(separatedBy: " ")
         var missingWords: [String] = []
 
         // Determine how many words to blank out
@@ -83,23 +96,21 @@ struct Passage: Equatable {
             indicesToBlank.insert(Int.random(in: 0..<words.count))
         }
         
-        // Sort the indices to preserve the original order
-        let sortedIndices = indicesToBlank.sorted()
-        
         // Replace the selected words with underscores
-        for index in sortedIndices {
+        for index in indicesToBlank {
             let word = words[index]
-            let lettersOnly = word.filter { $0.isLetter } // Only mask letters
+            let lettersOnly = word.filter { $0.isLetter }
             if !lettersOnly.isEmpty {
                 missingWords.append(lettersOnly)
                 let masked = String(repeating: "_", count: lettersOnly.count)
-                // Replace only the letters, keeping punctuation intact
-                words[index] = word.replacingOccurrences(of: lettersOnly, with: masked)
+                words[index] = word.replacingOccurrences(
+                    of: lettersOnly,
+                    with: masked
+                )
             }
         }
         
-        let blankedText = words.joined(separator: " ")
-        return (blankedText, missingWords)
+        return (words.joined(separator: " "), missingWords)
     }
     
     static func == (lhs: Passage, rhs: Passage) -> Bool {

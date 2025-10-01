@@ -15,7 +15,6 @@ class StateController: ObservableObject {
         }
     }
     
-    var progress: [VerseLocation:VerseMastery] = [:]
     let adaptor = BibleAdaptor()
     
     @Published var translation: Translation = .esv {
