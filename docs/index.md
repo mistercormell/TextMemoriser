@@ -17,4 +17,4 @@ A: Please email me with details of the issue and your device (iPhone model + iOS
 A: Yes. Memory Verse is completely free.
 
 **Q: Does the app collect any personal data?**  
-A: No — see our [Privacy Policy](privacy.html).
+A: No — see our [Privacy Policy](privacy.md).
