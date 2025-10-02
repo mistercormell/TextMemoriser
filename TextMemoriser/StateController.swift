@@ -67,10 +67,14 @@ class StateController: ObservableObject {
     }
         
     func addVerseToLearningSet(_ verseToAdd: VerseLocation) {
-        if !learningSet.contains(verseToAdd) {
-            fetchReference(location: verseToAdd)
-            learningSet.append(verseToAdd)
-            currentReference = passages.randomElement()
+        if learningSet.count <= 500 {
+            if !learningSet.contains(verseToAdd) {
+                fetchReference(location: verseToAdd)
+                learningSet.append(verseToAdd)
+                currentReference = passages.randomElement()
+            }
+        } else {
+            print("Failing silently for now - Learning set is full...")
         }
     }
     

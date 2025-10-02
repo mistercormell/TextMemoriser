@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+
+
 struct AddLearningGoalView: View {
     @EnvironmentObject var vm: StateController
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var versePickerViewModel = VersePickerViewModel()
+    @State private var selectedPlaylist: VersePlaylist?
     
     var body: some View {
         Form {
@@ -75,25 +78,35 @@ struct AddLearningGoalView: View {
                 }
             }
             Section(header: Text("Add Verse Playlists")) {
-                Button("All-time Favourites", action: {
-                    for verse in VerseLocation.curatedVerses() {
-                        vm.addVerseToLearningSet(verse)
-                    }
-                    self.presentationMode.wrappedValue.dismiss()
+                Button("Creator's Favourites", action: {
+                    selectedPlaylist = VersePlaylist(title: "Creator's Favourites", verses: VerseLocation.curatedVerses())
                 })
                 Button("Proclaiming Salvation ", action: {
-                    for verse in VerseLocation.proclaimingSalvation() {
-                        vm.addVerseToLearningSet(verse)
-                    }
-                    self.presentationMode.wrappedValue.dismiss()
+                    selectedPlaylist = VersePlaylist(title: "Proclaiming Salvation", verses: VerseLocation.proclaimingSalvation())
                 })
                 Button("Becoming Christlike", action: {
-                    for verse in VerseLocation.becomingChristlike() {
-                        vm.addVerseToLearningSet(verse)
-                    }
-                    self.presentationMode.wrappedValue.dismiss()
+                    selectedPlaylist = VersePlaylist(title: "Becoming Christlike", verses: VerseLocation.becomingChristlike())
+                })
+                Button("Being a Disciple", action: {
+                    selectedPlaylist = VersePlaylist(title: "Being a Disciple", verses: VerseLocation.beingADisciple())
+                })
+                Button("Living the New Life", action: {
+                    selectedPlaylist = VersePlaylist(title: "Living the New Life", verses: VerseLocation.livingTheNewLife())
+                })
+                Button("Relying on God", action: {
+                    selectedPlaylist = VersePlaylist(title: "Relying on God", verses: VerseLocation.relyingOnGod())
                 })
             }
+        }
+        .sheet(item: $selectedPlaylist) { playlist in
+            PlaylistPreviewView(vm: PlaylistPreviewViewModel(title: playlist.title, translation: vm.translation, locations: playlist.verses)) {
+                for verse in playlist.verses {
+                    vm.addVerseToLearningSet(verse)
+                }
+                selectedPlaylist = nil
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            .presentationDetents([.medium,.large])
         }
         
     }

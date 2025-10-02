@@ -19,12 +19,14 @@ struct PracticeView: View {
         VStack {
             Form {
                 Stepper("No. Questions: \(questionCount)", value: $questionCount, in: 5...50)
-                Button("Start Memorising") {
+                Button("Start Practicing") {
                     launchCustomQuestionSet()
                 }
             }
             .fullScreenCover(isPresented: $isShowingPracticeQuestionView) {
-                PracticeQuestionView(practiceVm: practiceVm, confettiTrigger: $confettiTrigger)
+                NavigationStack {
+                    PracticeQuestionView(practiceVm: practiceVm, confettiTrigger: $confettiTrigger)
+                }
             }
         }
         .confettiCannon(trigger: $confettiTrigger, colors: [BrandStyle.primary, BrandStyle.secondary])

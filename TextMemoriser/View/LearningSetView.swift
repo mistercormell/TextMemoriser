@@ -19,22 +19,21 @@ struct LearningSetView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                Text("Score: \(globalScore) (\(currentLevelName))")
-                    .font(.headline)
-                    .bold()
-                    
+            VStack {
                 ProgressView(value: progressFraction)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                    .padding()
-                
-                if let nextLevel = nextLevelName {
-                    Text("Next Level: \(nextLevel)")
-                } else {
-                    Text("You have reached the highest level")
+                    .progressViewStyle(LinearProgressViewStyle(tint: BrandStyle.primary))
+                    .padding([.leading, .trailing])
+                HStack {
+                    Text("\(currentLevelName)")
+                    Text("(\(globalScore))")
+                        .fontWeight(.bold)
+                    Spacer()
+                    if let nextLevel = nextLevelName {
+                        Text("Next Rank: \(nextLevel)")
+                    }
+                    
                 }
-                
-                
+                .padding([.leading, .trailing])
             }
             .padding()
             .onAppear {
@@ -46,8 +45,9 @@ struct LearningSetView: View {
             }
             Group {
                 if stateController.learningSet.count == 0 {
-                    Text("No verses in learning set. Add some verses using the Add button")
-                        .padding()
+                    List {
+                        Text("No verses in learning set. Add some verses using the Add button")
+                    }
                 } else {
                     List {
                         ForEach(stateController.learningSet) { location in
@@ -57,7 +57,7 @@ struct LearningSetView: View {
                             } label: {
                                 HStack {
                                     HStack(spacing: 2) {
-                                        ForEach(scoreToStars(mastery), id: \.self) { symbol in
+                                        ForEach(Array(scoreToStars(mastery).enumerated()), id: \.offset) { _, symbol in
                                             Image(systemName: symbol)
                                                 .foregroundColor(.yellow)
                                         }

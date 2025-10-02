@@ -64,8 +64,8 @@ class MemorisationProgress {
     func getGlobalScore() -> Int {
         var score = 0
         for item in progress.values {
-            score += item.attempts * 3
-            score += item.correct * 10
+            score += item.attempts * 1
+            score += item.correct * 5
         }
         
         return score

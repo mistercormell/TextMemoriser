@@ -80,6 +80,75 @@ struct VerseLocation: Codable, Identifiable, Equatable, Hashable {
         
         return curatedVerses
     }
+    
+    static func beingADisciple() -> [VerseLocation] {
+        var curatedVerses = [VerseLocation]()
+        curatedVerses.append(VerseLocation(book: Book.Matthew, chapter: 6, verse: 33))
+        curatedVerses.append(VerseLocation(book: Book.Luke, chapter: 9, verse: 23))
+        curatedVerses.append(VerseLocation(book: Book.John1, chapter: 2, verse: 15))
+        curatedVerses.append(VerseLocation(book: Book.John1, chapter: 2, verse: 16))
+        curatedVerses.append(VerseLocation(book: Book.Romans, chapter: 12, verse: 2))
+        curatedVerses.append(VerseLocation(book: Book.Corinthians1, chapter: 15, verse: 58))
+        curatedVerses.append(VerseLocation(book: Book.Hebrews, chapter: 12, verse: 3))
+        curatedVerses.append(VerseLocation(book: Book.Mark, chapter: 10, verse: 45))
+        curatedVerses.append(VerseLocation(book: Book.Corinthians2, chapter: 4, verse: 5))
+        curatedVerses.append(VerseLocation(book: Book.Proverbs, chapter: 3, verse: 9))
+        curatedVerses.append(VerseLocation(book: Book.Proverbs, chapter: 3, verse: 10))
+        curatedVerses.append(VerseLocation(book: Book.Corinthians2, chapter: 9, verse: 6))
+        curatedVerses.append(VerseLocation(book: Book.Corinthians2, chapter: 9, verse: 7))
+        curatedVerses.append(VerseLocation(book: Book.Acts, chapter: 1, verse: 8))
+        curatedVerses.append(VerseLocation(book: Book.Matthew, chapter: 28, verse: 19))
+        curatedVerses.append(VerseLocation(book: Book.Matthew, chapter: 28, verse: 20))
+        
+        return curatedVerses
+    }
+    
+    static func relyingOnGod() -> [VerseLocation] {
+        var curatedVerses = [VerseLocation]()
+        curatedVerses.append(VerseLocation(book: Book.Corinthians1, chapter: 3, verse: 16))
+        curatedVerses.append(VerseLocation(book: Book.Corinthians1, chapter: 2, verse: 12))
+        curatedVerses.append(VerseLocation(book: Book.Isaiah, chapter: 41, verse: 10))
+        curatedVerses.append(VerseLocation(book: Book.Philippians, chapter: 4, verse: 13))
+        curatedVerses.append(VerseLocation(book: Book.Lamentations, chapter: 3, verse: 22))
+        curatedVerses.append(VerseLocation(book: Book.Lamentations, chapter: 3, verse: 23))
+        curatedVerses.append(VerseLocation(book: Book.Numbers, chapter: 23, verse: 19))
+        curatedVerses.append(VerseLocation(book: Book.Isaiah, chapter: 26, verse: 3))
+        curatedVerses.append(VerseLocation(book: Book.Peter1, chapter: 5, verse: 7))
+        curatedVerses.append(VerseLocation(book: Book.Romans, chapter: 8, verse: 32))
+        curatedVerses.append(VerseLocation(book: Book.Philippians, chapter: 4, verse: 19))
+        curatedVerses.append(VerseLocation(book: Book.Hebrews, chapter: 2, verse: 18))
+        curatedVerses.append(VerseLocation(book: Book.Psalms, chapter: 119, verse: 9))
+        curatedVerses.append(VerseLocation(book: Book.Psalms, chapter: 119, verse: 11))
+        
+        return curatedVerses
+    }
+    
+    static func livingTheNewLife() -> [VerseLocation] {
+        var curatedVerses = [VerseLocation]()
+
+        curatedVerses.append(VerseLocation(book: Book.Corinthians2, chapter: 5, verse: 17))
+        curatedVerses.append(VerseLocation(book: Book.Galatians, chapter: 2, verse: 20))
+        curatedVerses.append(VerseLocation(book: Book.Romans, chapter: 12, verse: 1))
+        curatedVerses.append(VerseLocation(book: Book.John, chapter: 14, verse: 21))
+        curatedVerses.append(VerseLocation(book: Book.Timothy2, chapter: 3, verse: 16))
+        curatedVerses.append(VerseLocation(book: Book.Joshua, chapter: 1, verse: 8))
+        curatedVerses.append(VerseLocation(book: Book.John, chapter: 15, verse: 7))
+        curatedVerses.append(VerseLocation(book: Book.Philippians, chapter: 4, verse: 6))
+        curatedVerses.append(VerseLocation(book: Book.Philippians, chapter: 4, verse: 7))
+        curatedVerses.append(VerseLocation(book: Book.Matthew, chapter: 18, verse: 20))
+        curatedVerses.append(VerseLocation(book: Book.Hebrews, chapter: 10, verse: 24))
+        curatedVerses.append(VerseLocation(book: Book.Hebrews, chapter: 10, verse: 25))
+        curatedVerses.append(VerseLocation(book: Book.Matthew, chapter: 4, verse: 19))
+        curatedVerses.append(VerseLocation(book: Book.Romans, chapter: 1, verse: 16))
+        
+        return curatedVerses
+    }
+}
+
+struct VersePlaylist: Identifiable {
+    let id = UUID()
+    let title: String
+    let verses: [VerseLocation]
 }
 
 enum Book: String, Codable, CaseIterable {
