@@ -11,6 +11,17 @@ import SwiftUI
 @Observable
 class MemorisationProgress {
     var progress: [VerseLocation:VerseMastery] = [:]
+    let levelNames = [
+        "Seedling", "Learner", "Follower", "Scribe",
+        "Disciple", "Shepherd", "Teacher", "Evangelist",
+        "Overcomer", "Lightbearer", "Pillar", "Crown"
+    ]
+
+    let levels = [
+        50, 150, 300, 500,
+        800, 1200, 1800, 2600,
+        3600, 5000, 7000, Int.max
+    ]
     
     init() {
         load()
@@ -48,6 +59,50 @@ class MemorisationProgress {
         .map({
             $0.key
         })
+    }
+    
+    func getGlobalScore() -> Int {
+        var score = 0
+        for item in progress.values {
+            score += item.attempts * 3
+            score += item.correct * 10
+        }
+        
+        return score
+    }
+    
+    // Determine the current level
+    func getCurrentLevel(globalScore: Int) -> Int {
+        for (index, threshold) in levels.enumerated() {
+            if globalScore < threshold {
+                return index + 1
+            }
+        }
+        return levels.count
+    }
+    
+    func getNextLevelName(currentLevel: Int) -> String? {
+        let levelIndex = currentLevel - 1
+        // Check if there's a next level
+        guard levelIndex + 1 < levelNames.count else { return nil }
+        return levelNames[levelIndex + 1]
+    }
+    
+    func getCurrentLevelName(level: Int) -> String {
+        let levelIndex = min(level - 1, levelNames.count - 1)
+        return levelNames[levelIndex]
+    }
+        
+        // Calculate progress toward next level
+    func getProgressFraction(currentLevel: Int, globalScore: Int) -> Double {
+        let levelIndex = min(currentLevel - 1, levels.count - 1)
+        let lowerBound = levelIndex == 0 ? 0 : levels[levelIndex - 1]
+        let upperBound = levels[levelIndex]
+        
+        // Avoid division by zero
+        guard upperBound - lowerBound > 0 else { return 1.0 }
+        
+        return min(Double(globalScore - lowerBound) / Double(upperBound - lowerBound), 1.0)
     }
             
     //todo persistence

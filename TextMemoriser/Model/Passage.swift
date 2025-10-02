@@ -97,7 +97,7 @@ struct Passage: Equatable {
         }
         
         // Replace the selected words with underscores
-        for index in indicesToBlank {
+        for index in indicesToBlank.sorted() {
             let word = words[index]
             let lettersOnly = word.filter { $0.isLetter }
             if !lettersOnly.isEmpty {

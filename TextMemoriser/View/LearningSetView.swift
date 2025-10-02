@@ -11,9 +11,39 @@ struct LearningSetView: View {
     @EnvironmentObject var stateController: StateController
     @Environment(MemorisationProgress.self) private var progress: MemorisationProgress
     @State var showingAdd: Bool = false
+    @State var globalScore: Int = 0
+    @State var currentLevel: Int = 0
+    @State var currentLevelName: String = ""
+    @State var nextLevelName: String? = ""
+    @State var progressFraction: Double = 0.0
     
     var body: some View {
         NavigationStack {
+            VStack(spacing: 20) {
+                Text("Score: \(globalScore) (\(currentLevelName))")
+                    .font(.headline)
+                    .bold()
+                    
+                ProgressView(value: progressFraction)
+                    .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                    .padding()
+                
+                if let nextLevel = nextLevelName {
+                    Text("Next Level: \(nextLevel)")
+                } else {
+                    Text("You have reached the highest level")
+                }
+                
+                
+            }
+            .padding()
+            .onAppear {
+                globalScore = progress.getGlobalScore()
+                currentLevel = progress.getCurrentLevel(globalScore: globalScore)
+                currentLevelName = progress.getCurrentLevelName(level: currentLevel)
+                nextLevelName = progress.getNextLevelName(currentLevel: currentLevel)
+                progressFraction = progress.getProgressFraction(currentLevel: currentLevel, globalScore: globalScore)
+            }
             Group {
                 if stateController.learningSet.count == 0 {
                     Text("No verses in learning set. Add some verses using the Add button")
@@ -26,15 +56,12 @@ struct LearningSetView: View {
                                 LearnView(selectedVerse: location)
                             } label: {
                                 HStack {
-                                    Circle()
-                                        .fill(
-                                            Color(
-                                                hue: scoreToHue(mastery),
-                                                saturation: 0.8,
-                                                brightness: 0.9
-                                            )
-                                        )
-                                        .frame(width: 16, height: 16)
+                                    HStack(spacing: 2) {
+                                        ForEach(scoreToStars(mastery), id: \.self) { symbol in
+                                            Image(systemName: symbol)
+                                                .foregroundColor(.yellow)
+                                        }
+                                    }
 
                                     Text(location.display)
                                 }
@@ -63,17 +90,30 @@ struct LearningSetView: View {
         })
     }
     
-    private func scoreToHue(_ score: Double) -> Double {
-        let clamped = max(0, min(100, score))
-        
-        if clamped < 80 {
-            // 0 → 80 maps to red → orange
-            // Hue: red (0.0) → orange (approx 0.08)
-            return (clamped / 80) * 0.08
-        } else {
-            // 80 → 100 maps to orange → green
-            // Hue: orange (0.08) → green (0.33)
-            return 0.08 + ((clamped - 80) / 20) * (0.33 - 0.08)
+    func scoreToStars(_ mastery: Double) -> [String] {
+        // Map mastery (0–100) to fractional stars (0–3)
+        let starFraction: Double = {
+            switch mastery {
+            case ..<30:
+                return 0
+            case 30..<60:
+                return 0.5 + (mastery - 30) / 30 * 0.5
+            case 60..<80:
+                return 1.0 + (mastery - 60) / 20 * 1.5
+            default:
+                return 3
+            }
+        }()
+
+        // Generate 3 star symbols
+        return (0..<3).map { index in
+            if Double(index + 1) <= starFraction {
+                return "star.fill"                   // full star
+            } else if Double(index) + 0.5 <= starFraction {
+                return "star.leadinghalf.filled"    // half star
+            } else {
+                return "star"                        // empty star
+            }
         }
     }
 }
@@ -81,5 +121,7 @@ struct LearningSetView: View {
 struct LearningSetView_Previews: PreviewProvider {
     static var previews: some View {
         LearningSetView()
+            .environmentObject(StateController())
+            .environment(MemorisationProgress())
     }
 }
