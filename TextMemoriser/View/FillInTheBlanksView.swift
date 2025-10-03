@@ -22,6 +22,8 @@ struct FillInTheBlanksView: View {
     @Binding var question: Int
     @Binding var confettiTrigger: Int
     
+    @FocusState private var focusedIndex: Int?
+    
     var body: some View {
         VStack {
             Text("\(passage.displayLocationWithCopyright)")
@@ -35,7 +37,32 @@ struct FillInTheBlanksView: View {
             Form {
                 ForEach(missingWords.indices, id: \.self) { index in
                     TextField("Missing Word: \(index +  1)", text: $userEnteredMissingWords[index])
+                        .focused($focusedIndex, equals: index)
+                        .submitLabel(index == userEnteredMissingWords.count - 1 ? .done : .next)
                 }
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                     Button {
+                         moveFocus(previous: true)
+                     } label: {
+                         Image(systemName: "chevron.up")
+                     }
+                     .disabled(focusedIndex == userEnteredMissingWords.startIndex)
+
+                     Button {
+                         moveFocus(previous: false)
+                     } label: {
+                         Image(systemName: "chevron.down")
+                     }
+                     .disabled(focusedIndex == userEnteredMissingWords.index(before: userEnteredMissingWords.endIndex))
+
+                     Spacer()
+
+                     Button("Done") {
+                         focusedIndex = nil
+                     }
+                 }
             }
             Button("Check") {
                 if missingWords.elementsEqual(userEnteredMissingWords, by: { $0.lowercased() == $1.lowercased() }) {
@@ -61,6 +88,19 @@ struct FillInTheBlanksView: View {
         }
         
     }
+    
+    private func moveFocus(previous: Bool) {
+            guard let current = focusedIndex else { return }
+            if previous {
+                if current > userEnteredMissingWords.startIndex {
+                    focusedIndex = current - 1
+                }
+            } else {
+                if current < userEnteredMissingWords.endIndex - 1 {
+                    focusedIndex = current + 1
+                }
+            }
+        }
 
 }
 

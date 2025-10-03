@@ -29,7 +29,7 @@ struct PracticeView: View {
                 }
             }
         }
-        .confettiCannon(trigger: $confettiTrigger, colors: [BrandStyle.primary, BrandStyle.secondary])
+        .confettiCannon(trigger: $confettiTrigger, colors: [BrandStyle.primary, BrandStyle.fish])
         .onChange(of: practiceVm.current) {
             if $1 >= questionCount {
                 isShowingPracticeQuestionView = false

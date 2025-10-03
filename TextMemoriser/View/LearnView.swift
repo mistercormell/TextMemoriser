@@ -68,6 +68,7 @@ extension LearnView {
                 Button("Memorise this verse") {
                     isMemorising = true
                 }
+                .tint(BrandStyle.primary)
                 .buttonStyle(.borderedProminent)
                 .padding()
                 Spacer()

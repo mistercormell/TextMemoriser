@@ -111,7 +111,7 @@ extension ArrangeTheVerseView {
                         Button(action: { pickWord(word) }) {
                             Text(word.word)
                                 .padding(5)
-                                .background(Color.blue)
+                                .background(BrandStyle.primary)
                                 .foregroundColor(.white)
                                 .cornerRadius(5)
                         }

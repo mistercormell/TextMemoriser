@@ -59,7 +59,7 @@ struct LearningSetView: View {
                                     HStack(spacing: 2) {
                                         ForEach(Array(scoreToStars(mastery).enumerated()), id: \.offset) { _, symbol in
                                             Image(systemName: symbol)
-                                                .foregroundColor(.yellow)
+                                                .foregroundColor(BrandStyle.secondary)
                                         }
                                     }
 

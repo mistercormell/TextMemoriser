@@ -23,6 +23,7 @@ struct MemoriseView: View {
             VStack(spacing: 20) {
                 ProgressView(value: Double(question), total: Double(questionLimit))
                     .progressViewStyle(.linear)
+                     
                     .padding()
                 switch question {
                 case 1:
@@ -50,8 +51,8 @@ struct MemoriseView: View {
                         
                 }
             }
-            .confettiCannon(trigger: $confettiTrigger, colors: [BrandStyle.primary, BrandStyle.secondary])
-            .confettiCannon(trigger: $finalConfettiTrigger, num: 200, confettis: [.text("🥖"), .text("🐟")])
+            .confettiCannon(trigger: $confettiTrigger, colors: [BrandStyle.primary, BrandStyle.fish])
+            .confettiCannon(trigger: $finalConfettiTrigger, num: 200, confettis: [.text("🥖"), .text("🐟")], openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 180))
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { dismiss() }) {
