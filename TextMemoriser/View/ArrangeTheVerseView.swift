@@ -111,7 +111,7 @@ extension ArrangeTheVerseView {
                         Button(action: { pickWord(word) }) {
                             Text(word.word)
                                 .padding(5)
-                                .background(BrandStyle.primary)
+                                .background(Color.accentColor)
                                 .foregroundColor(.white)
                                 .cornerRadius(5)
                         }
@@ -134,6 +134,6 @@ extension ArrangeTheVerseView {
 }
 
 #Preview {
-    ArrangeTheVerseView(question: .constant(1), confettiTrigger: .constant(1), chunks: 4, passage: Passage.example)
+    ArrangeTheVerseView(question: .constant(1), confettiTrigger: .constant(1), chunks: 5, passage: Passage.example)
         .environmentObject(MemorisationProgress())
 }

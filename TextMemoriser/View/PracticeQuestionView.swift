@@ -16,7 +16,6 @@ struct PracticeQuestionView: View {
         VStack {
             ProgressView(value: Double(practiceVm.current), total: Double(practiceVm.questions.count))
                 .progressViewStyle(.linear)
-                .tint(BrandStyle.primary)
                 .padding()
             if let question = practiceVm.getQuestion() {
                 switch question.type {

@@ -21,7 +21,7 @@ struct LearningSetView: View {
         NavigationStack {
             VStack {
                 ProgressView(value: progressFraction)
-                    .progressViewStyle(LinearProgressViewStyle(tint: BrandStyle.primary))
+                    .progressViewStyle(.linear)
                     .padding([.leading, .trailing])
                 HStack {
                     Text("\(currentLevelName)")
