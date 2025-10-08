@@ -17,7 +17,7 @@ struct ArrangeTheVerseView: View {
     @Binding var confettiTrigger: Int
     let chunks: Int?
     
-    @Environment(MemorisationProgress.self) var memorisationProgress: MemorisationProgress
+    @EnvironmentObject var memorisationProgress: MemorisationProgress
     
     let passage: Passage
     
@@ -135,5 +135,5 @@ extension ArrangeTheVerseView {
 
 #Preview {
     ArrangeTheVerseView(question: .constant(1), confettiTrigger: .constant(1), chunks: 4, passage: Passage.example)
-        .environment(MemorisationProgress())
+        .environmentObject(MemorisationProgress())
 }

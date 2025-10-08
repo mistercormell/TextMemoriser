@@ -10,7 +10,7 @@ import ConfettiSwiftUI
 
 struct PracticeView: View {
     @EnvironmentObject var viewModel: StateController
-    @State var practiceVm = PracticeViewModel()
+    @StateObject var practiceVm = PracticeViewModel()
     @State private var questionCount: Int = 10
     @State private var confettiTrigger: Int = 0
     @State private var isShowingPracticeQuestionView: Bool = false
@@ -25,13 +25,14 @@ struct PracticeView: View {
             }
             .fullScreenCover(isPresented: $isShowingPracticeQuestionView) {
                 NavigationStack {
-                    PracticeQuestionView(practiceVm: practiceVm, confettiTrigger: $confettiTrigger)
+                    PracticeQuestionView(practiceVm: practiceVm, confettiTrigger: $confettiTrigger, isPresented: $isShowingPracticeQuestionView)
                 }
+                .confettiCannon(trigger: $confettiTrigger, colors: [BrandStyle.primary, BrandStyle.fish])
             }
         }
-        .confettiCannon(trigger: $confettiTrigger, colors: [BrandStyle.primary, BrandStyle.fish])
-        .onChange(of: practiceVm.current) {
-            if $1 >= questionCount {
+
+        .onChange(of: practiceVm.current) { newValue in
+            if newValue >= questionCount {
                 isShowingPracticeQuestionView = false
             }
         }

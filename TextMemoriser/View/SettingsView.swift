@@ -21,7 +21,7 @@ struct SettingsView: View {
                 }
             })
             Toggle("Daily Reminders", isOn: $hasDailyReminders)
-                .onChange(of: hasDailyReminders) {
+                .onChange(of: hasDailyReminders) { _ in
                     if hasDailyReminders == true {
                         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                             if success { print("All set!") }

@@ -61,8 +61,8 @@ struct MemoriseView: View {
                     }
                 }
             }
-            .onChange(of: question) {
-                if $1 > questionLimit {
+            .onChange(of: question) { _ in
+                if question > questionLimit {
                     finalConfettiTrigger += 1
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                         isMemorising = false

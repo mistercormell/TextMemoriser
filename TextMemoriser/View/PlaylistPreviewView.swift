@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaylistPreviewView: View {
     @Environment(\.dismiss) var dismiss
-    @Bindable var vm: PlaylistPreviewViewModel
+    @ObservedObject var vm: PlaylistPreviewViewModel
     let onConfirm: () -> Void
     
     var body: some View {

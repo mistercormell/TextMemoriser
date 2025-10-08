@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LearningSetView: View {
     @EnvironmentObject var stateController: StateController
-    @Environment(MemorisationProgress.self) private var progress: MemorisationProgress
+    @EnvironmentObject var progress: MemorisationProgress
     @State var showingAdd: Bool = false
     @State var globalScore: Int = 0
     @State var currentLevel: Int = 0
@@ -122,6 +122,6 @@ struct LearningSetView_Previews: PreviewProvider {
     static var previews: some View {
         LearningSetView()
             .environmentObject(StateController())
-            .environment(MemorisationProgress())
+            .environmentObject(MemorisationProgress())
     }
 }

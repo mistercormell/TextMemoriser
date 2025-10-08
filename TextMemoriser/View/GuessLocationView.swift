@@ -26,7 +26,7 @@ struct GuessLocationView: View {
     @Binding var question: Int
     
     @StateObject var questionFeedback = QuestionFeedback()
-    @Environment(MemorisationProgress.self) var memorisationProgress: MemorisationProgress
+    @EnvironmentObject var memorisationProgress: MemorisationProgress
     
     var body: some View {
         VStack {
@@ -82,5 +82,5 @@ struct GuessLocationView: View {
 
 #Preview {
     GuessLocationView(passage: Passage.example, questionType: .bookOnly, confettiTrigger: .constant(1), question: .constant(1))
-        .environment(MemorisationProgress())
+        .environmentObject(MemorisationProgress())
 }

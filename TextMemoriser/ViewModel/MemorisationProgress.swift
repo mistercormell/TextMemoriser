@@ -8,8 +8,7 @@
 import Foundation
 import SwiftUI
 
-@Observable
-class MemorisationProgress {
+class MemorisationProgress: ObservableObject {
     var progress: [VerseLocation:VerseMastery] = [:]
     let levelNames = [
         "Seedling", "Learner", "Follower", "Scribe",

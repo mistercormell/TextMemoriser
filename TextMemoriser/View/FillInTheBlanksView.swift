@@ -17,7 +17,7 @@ struct FillInTheBlanksView: View {
     
     @StateObject var questionFeedback = QuestionFeedback()
     
-    @Environment(MemorisationProgress.self) var memorisationProgress: MemorisationProgress
+    @EnvironmentObject var memorisationProgress: MemorisationProgress
     
     @Binding var question: Int
     @Binding var confettiTrigger: Int
@@ -106,5 +106,5 @@ struct FillInTheBlanksView: View {
 
 #Preview {
     FillInTheBlanksView(passage: Passage.example, percentageBlank: 0.1, question: .constant(1), confettiTrigger: .constant(1))
-        .environment(MemorisationProgress())
+        .environmentObject(MemorisationProgress())
 }

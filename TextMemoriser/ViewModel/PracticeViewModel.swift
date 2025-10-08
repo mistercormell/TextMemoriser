@@ -8,10 +8,9 @@
 import Foundation
 import SwiftUI
 
-@Observable
-class PracticeViewModel {
-    var questions: [(passage: Passage, type: Question)] = []
-    var current: Int = 0
+class PracticeViewModel: ObservableObject {
+    @Published var questions: [(passage: Passage, type: Question)] = []
+    @Published var current: Int = 0
     
     func getQuestion() -> (passage: Passage, type: Question)? {
         if questions.isEmpty || current >= questions.count {

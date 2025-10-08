@@ -7,13 +7,12 @@
 
 import Foundation
 
-@Observable
-class PlaylistPreviewViewModel {
+class PlaylistPreviewViewModel: ObservableObject {
     let title: String
     let translation: Translation
     let locations: [VerseLocation]
     let adaptor = BibleAdaptor()
-    var passages: [Passage] = []
+    @Published var passages: [Passage] = []
     
     init(title: String, translation: Translation, locations: [VerseLocation]) {
         self.title = title

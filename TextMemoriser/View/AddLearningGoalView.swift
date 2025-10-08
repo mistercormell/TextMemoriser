@@ -57,22 +57,22 @@ struct AddLearningGoalView: View {
                     Text("Add Verse/s to Learning Set")
                 }
             }
-            .onChange(of: versePickerViewModel.bookChoice) {
+            .onChange(of: versePickerViewModel.bookChoice) { _ in
                 versePickerViewModel.updateRangeOfChaptersInBookChoice()
                 if !versePickerViewModel.chapterRange.contains(versePickerViewModel.chapterChoice) {
                     versePickerViewModel.chapterChoice = versePickerViewModel.chapterRange.first ?? 1
                 }
                 updateVerseRanges()
             }
-            .onChange(of: versePickerViewModel.chapterChoice) {
+            .onChange(of: versePickerViewModel.chapterChoice) { _ in
                 updateVerseRanges()
             }
-            .onChange(of: versePickerViewModel.verseChoice) {
+            .onChange(of: versePickerViewModel.verseChoice) { _ in
                 if versePickerViewModel.verseChoice > versePickerViewModel.verseEnd {
                     versePickerViewModel.verseEnd = versePickerViewModel.verseChoice
                 }
             }
-            .onChange(of: versePickerViewModel.verseEnd) {
+            .onChange(of: versePickerViewModel.verseEnd) { _ in
                 if versePickerViewModel.verseEnd < versePickerViewModel.verseChoice {
                     versePickerViewModel.verseChoice = versePickerViewModel.verseEnd
                 }

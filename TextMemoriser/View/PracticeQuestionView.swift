@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct PracticeQuestionView: View {
-    @Bindable var practiceVm: PracticeViewModel
+    @ObservedObject var practiceVm: PracticeViewModel
     @Binding var confettiTrigger: Int
-    @Environment(\.dismiss) var dismiss
+    @Binding var isPresented: Bool
     
     var body: some View {
         VStack {
@@ -55,7 +55,7 @@ struct PracticeQuestionView: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: { dismiss() }) {
+                Button(action: { isPresented = false }) {
                     Image(systemName: "xmark")
                         .foregroundColor(.primary)
                 }
@@ -65,5 +65,5 @@ struct PracticeQuestionView: View {
 }
 
 #Preview {
-    PracticeQuestionView(practiceVm: PracticeViewModel(), confettiTrigger: .constant(1))
+    PracticeQuestionView(practiceVm: PracticeViewModel(), confettiTrigger: .constant(1), isPresented: .constant(true))
 }
