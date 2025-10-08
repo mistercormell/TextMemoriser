@@ -10,11 +10,13 @@ Tasks:
 3. Make Lesson mode to take them through all the questions in order (without unfinished modes) - DONE
 4. Build the verse mode added and included in lesson mode - DONE
 5. Fill in the blank mode with dictation added and included in lesson mode
-6. Strength metric captured and displayed simply as colour on learning set view
-7. Practice mode revamped to use new question types and strength metric
+6. Strength metric captured and displayed simply as colour on learning set view - DONE
+7. Practice mode revamped to use new question types and strength metric - DONE
 8. Custom timed notifications
 *** REFACTOR AND CODE IMPROVEMENTS ***
-9. Fancy UI enhancements to question types (e.g. strengths progress bar)
+9. Fancy UI enhancements to question types (e.g. strengths progress bar) - DONE
+10. Awards / Badges
+11. Intelligent Practice Mode
 
 ###Learning / Practice Mode
 
