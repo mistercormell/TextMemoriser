@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,7 +38,7 @@
 		B490F1A12BA2020300E99141 /* BibleDictation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490F1A02BA2020300E99141 /* BibleDictation.swift */; };
 		B4AA6BB625C5E92F00A9D800 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BB525C5E92F00A9D800 /* LearnView.swift */; };
 		B4AA6BBB25C6F17D00A9D800 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */; };
-		B4D886042E97A4CA00CA37BC /* SpeechSynthesis.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D886032E97A4CA00CA37BC /* SpeechSynthesis.swift */; };
+		B4D8860A2E97BF6400CA37BC /* DictatedVerseChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D886092E97BF6400CA37BC /* DictatedVerseChecker.swift */; };
 		B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */; };
 		B4E6645C25A20D080087AC26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E6645B25A20D080087AC26 /* Assets.xcassets */; };
 		B4E6645F25A20D080087AC26 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E6645E25A20D080087AC26 /* Preview Assets.xcassets */; };
@@ -102,7 +102,7 @@
 		B490F1A02BA2020300E99141 /* BibleDictation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleDictation.swift; sourceTree = "<group>"; };
 		B4AA6BB525C5E92F00A9D800 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		B4AA6BBA25C6F17D00A9D800 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
-		B4D886032E97A4CA00CA37BC /* SpeechSynthesis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesis.swift; sourceTree = "<group>"; };
+		B4D886092E97BF6400CA37BC /* DictatedVerseChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictatedVerseChecker.swift; sourceTree = "<group>"; };
 		B4E6645425A20D070087AC26 /* TextMemoriser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMemoriser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E6645725A20D070087AC26 /* TextMemoriserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMemoriserApp.swift; sourceTree = "<group>"; };
 		B4E6645B25A20D080087AC26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +122,10 @@
 		B4E664C725AA05910087AC26 /* Passage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passage.swift; sourceTree = "<group>"; };
 		B4E664DD25AA08EB0087AC26 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B4D886052E97B96900CA37BC /* Speech */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Speech; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B4E6645125A20D070087AC26 /* Frameworks */ = {
@@ -172,6 +176,7 @@
 				B40B25A427A1B8E200A037E9 /* VerseMastery.swift */,
 				B490F18B2B9F299600E99141 /* Translation.swift */,
 				B490F1932B9FADCE00E99141 /* BibleMetadata.swift */,
+				B4D886092E97BF6400CA37BC /* DictatedVerseChecker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,7 +198,6 @@
 				B44ACC5E2E8C26B400EAC45E /* PracticeView.swift */,
 				B4421A712E8D75D40012889C /* PracticeQuestionView.swift */,
 				B4421A732E8E6E790012889C /* PlaylistPreviewView.swift */,
-				B4D886032E97A4CA00CA37BC /* SpeechSynthesis.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,6 +255,7 @@
 		B4E6645625A20D070087AC26 /* TextMemoriser */ = {
 			isa = PBXGroup;
 			children = (
+				B4D886052E97B96900CA37BC /* Speech */,
 				B40B25A627A2AD7800A037E9 /* ViewModel */,
 				B43D624C25D977C100CD2C65 /* Extensions */,
 				B42478E825D96D780064A04D /* Web */,
@@ -308,6 +313,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B4D886052E97B96900CA37BC /* Speech */,
 			);
 			name = TextMemoriser;
 			productName = TextMemoriser;
@@ -459,8 +467,8 @@
 				B4421A762E8E73CD0012889C /* PlaylistPreviewViewModel.swift in Sources */,
 				B413F40225DD71E1001D974C /* FlowLayoutView.swift in Sources */,
 				B43D624E25D977D400CD2C65 /* UserDocuments.swift in Sources */,
-				B4D886042E97A4CA00CA37BC /* SpeechSynthesis.swift in Sources */,
 				B4E6645825A20D070087AC26 /* TextMemoriserApp.swift in Sources */,
+				B4D8860A2E97BF6400CA37BC /* DictatedVerseChecker.swift in Sources */,
 				B490F1A12BA2020300E99141 /* BibleDictation.swift in Sources */,
 				B490F1882B9F1A7000E99141 /* BibleGoAdaptor.swift in Sources */,
 				B490F1942B9FADCE00E99141 /* BibleMetadata.swift in Sources */,

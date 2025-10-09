@@ -19,10 +19,22 @@ struct PracticeView: View {
         VStack {
             Form {
                 Stepper("No. Questions: \(questionCount)", value: $questionCount, in: 5...50)
-                Button("Start Practicing") {
-                    launchCustomQuestionSet()
-                }
             }
+            Button(action: {
+                launchCustomQuestionSet()
+            }) {
+                HStack {
+                    Image(systemName: "graduationcap.circle.fill")
+                        .font(.title2)
+                    Text("Start Practicing")
+                        .fontWeight(.semibold)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+            }
+            .tint(BrandStyle.secondary)
+            .buttonStyle(.borderedProminent)
+            .padding()
             .fullScreenCover(isPresented: $isShowingPracticeQuestionView) {
                 NavigationStack {
                     PracticeQuestionView(practiceVm: practiceVm, confettiTrigger: $confettiTrigger, isPresented: $isShowingPracticeQuestionView)

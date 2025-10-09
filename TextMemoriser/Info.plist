@@ -22,6 +22,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to your microphone to let you dictate Bible verses you are learning</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>We need speech recognition so that we can check your dictated Bible verses for accuracy to help you improve</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
