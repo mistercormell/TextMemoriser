@@ -34,15 +34,12 @@ extension LearnView {
         @State var passageTextOpacity = 1.0
         @State private var speechSynthesizer = AVSpeechSynthesizer()
         @State private var isMemorising = false
+        let speech = SpeechSynthesis()
         
         var body: some View {
             VStack {
                 Button(action: {
-                    let utterance = AVSpeechUtterance(string: "\(passageText):\(passageLocation)")
-                    utterance.rate = 0.4
-                    utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
-                    
-                    speechSynthesizer.speak(utterance)
+                    speech.speak(text: "\(passageText):\(passageLocation)")
                 }, label: {
                     Image(systemName: "speaker.2")
                         .font(.largeTitle)
